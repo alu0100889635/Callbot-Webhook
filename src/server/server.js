@@ -12,6 +12,8 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
+	const speech = req.body;
+	console.log("Este es el body de la req:", speech);
 	axios({
 		method: 'POST',
 		url: 'https://api.dialogflow.com/v1/query?v=callbot-271218',
@@ -23,6 +25,7 @@ app.post("/questions", function(req, res) {
 		data: {
 			"lang": "es",
 			"sessionId": "12345",
+			"query": speech
 		},
 
 		event:  {
