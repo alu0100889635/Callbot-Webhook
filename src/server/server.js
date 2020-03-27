@@ -37,22 +37,22 @@ app.post("/questions", function(req, res) {
 	})
 	.catch((error) => {
 		console.log(error);                
-	}) */
-	/* const speech = req;
+	}) 
+	const speech = req;
 	console.log(speech.body);
-  
+	*/
 	const speechResponse = {
 		google: {
-		expectUserResponse: true,
-		richResponse: {
-			items: [
-			{
-				simpleResponse: {
-				textToSpeech: speech
+			expectUserResponse: true,
+			richResponse: {
+				items: [
+				{
+					simpleResponse: {
+					textToSpeech: speech
+					}
 				}
+				]
 			}
-			]
-		}
 		}
 	};
   
@@ -63,7 +63,7 @@ app.post("/questions", function(req, res) {
 		speech: speech,
 		displayText: speech,
 		source: "webhook-echo-sample"
-	}); */
+	});
 });
 
 /* app.get("/answers", function(req, res) {
