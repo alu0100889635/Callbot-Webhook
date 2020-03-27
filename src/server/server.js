@@ -12,36 +12,14 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
-	const speech = req.body;
-	const pregunta1 = "Hola, voy a guiarle a través de este test sobre el coronavirus (covid19).Si usted presenta una emergencia contacte con el 112.Este test no es un sustituto de un consejo, diagnóstico o tratamiento médico profesional. Consulte siempre a un profesional sobre síntomas serios u otro tipo de emergencias. ¿Desea comenzar?";
-	console.log("Este es el body de la req:", speech);
-	/* axios({
-		method: 'POST',
-		url: 'https://api.dialogflow.com/v1/query?v=callbot-271218',
-		headers: {
-			'Authorization': 'Bearer 1063cfb4d4cd4416b6f510cba3936f1e',
-			'Content-Type': 'application/json',
-		},
-		
-		data: {
-			"lang": "es",
-			"sessionId": "12345",
-			"query": speech
-		},
+	const speech = req.body.result.parameters.Hello;
+	const pregunta1 = "";
+	if(speech == "Hola")
+		pregunta1 = "Hola, voy a guiarle a través de este test sobre el coronavirus (covid19).Si usted presenta una emergencia contacte con el 112.Este test no es un sustituto de un consejo, diagnóstico o tratamiento médico profesional. Consulte siempre a un profesional sobre síntomas serios u otro tipo de emergencias. ¿Desea comenzar?";
+	else
+		pregunta1 = "No te pillo wey";
 
-		event:  {
-			"event": "welcome"
-		}
-	})  
-	.then((response) => {
-		console.log(response.data);
-	})
-	.catch((error) => {
-		console.log(error);                
-	}) 
-	const speech = req;
-	console.log(speech.body);
-	*/
+	console.log("Este es el body de la req:", speech);
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
