@@ -13,14 +13,7 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
-	speech = req;
-	/* const pregunta1 = "";
-	if(speech == "Hola") {
-		pregunta1 = "Hola, voy a guiarle a través de este test sobre el coronavirus (covid19).Si usted presenta una emergencia contacte con el 112.Este test no es un sustituto de un consejo, diagnóstico o tratamiento médico profesional. Consulte siempre a un profesional sobre síntomas serios u otro tipo de emergencias. ¿Desea comenzar?";
-	}
-	else{
-		pregunta1 = "No te pillo wey";
-	} */
+	const speech = req.body;
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
