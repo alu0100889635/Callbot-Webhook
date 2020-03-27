@@ -12,7 +12,8 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
-	const speech = req.body;
+	const speech = req.body.parameters.Hello;
+	const pregunta1 = "Hola, voy a guiarle a través de este test sobre el coronavirus (covid19).Si usted presenta una emergencia contacte con el 112.Este test no es un sustituto de un consejo, diagnóstico o tratamiento médico profesional. Consulte siempre a un profesional sobre síntomas serios u otro tipo de emergencias. ¿Desea comenzar?";
 	console.log("Este es el body de la req:", speech);
 	/* axios({
 		method: 'POST',
@@ -48,7 +49,7 @@ app.post("/questions", function(req, res) {
 				items: [
 				{
 					simpleResponse: {
-					textToSpeech: speech
+					textToSpeech: pregunta1
 					}
 				}
 				]
@@ -58,10 +59,10 @@ app.post("/questions", function(req, res) {
   
 	return res.json({
 		payload: speechResponse,
-		//data: speechResponse,
-		fulfillmentText: speech,
-		speech: speech,
-		displayText: speech,
+		data: speechResponse,
+		fulfillmentText: pregunta1,
+		speech: pregunta1,
+		displayText: pregunta1,
 		source: "webhook-echo-sample"
 	});
 });
