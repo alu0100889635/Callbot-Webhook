@@ -1,4 +1,5 @@
 'use strict';
+const { exec } = require("child_process");
 const axios = require('axios');
 const express = require("express");
 const app = express();
@@ -12,6 +13,17 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
+	exec(req >> req.json, (error, stdout, stderr) => {
+		if (error) {
+			console.log(`error: ${error.message}`);
+			return;
+		}
+		if (stderr) {
+			console.log(`stderr: ${stderr}`);
+			return;
+		}
+		console.log(`stdout: ${stdout}`);
+	})
 	req >> req.json;
 	const pregunta1 = "";
 	if(speech == "Hola") {
