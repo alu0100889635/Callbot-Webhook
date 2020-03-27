@@ -1,5 +1,4 @@
 const axios = require('axios');
-const evento = "WELCOME";
 axios({
     method: 'GET',
     url: 'https://api.dialogflow.com/v1/query?v=callbot-271218&e=WELCOME&sessionId=12345&lang=es',
