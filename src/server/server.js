@@ -14,7 +14,7 @@ app.use(cors()); */
 app.post("/questions", function(req, res) {
 	const speech = req.body;
 	console.log("Este es el body de la req:", speech);
-	axios({
+	/* axios({
 		method: 'POST',
 		url: 'https://api.dialogflow.com/v1/query?v=callbot-271218',
 		headers: {
@@ -37,7 +37,7 @@ app.post("/questions", function(req, res) {
 	})
 	.catch((error) => {
 		console.log(error);                
-	})
+	}) */
 	/* const speech = req;
 	console.log(speech.body);
   
