@@ -13,25 +13,14 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
-	exec(req >> req.json, (error, stdout, stderr) => {
-		if (error) {
-			console.log(`error: ${error.message}`);
-			return;
-		}
-		if (stderr) {
-			console.log(`stderr: ${stderr}`);
-			return;
-		}
-		console.log(`stdout: ${stdout}`);
-	})
-	req >> req.json;
-	const pregunta1 = "";
+	speech = req;
+	/* const pregunta1 = "";
 	if(speech == "Hola") {
 		pregunta1 = "Hola, voy a guiarle a través de este test sobre el coronavirus (covid19).Si usted presenta una emergencia contacte con el 112.Este test no es un sustituto de un consejo, diagnóstico o tratamiento médico profesional. Consulte siempre a un profesional sobre síntomas serios u otro tipo de emergencias. ¿Desea comenzar?";
 	}
 	else{
 		pregunta1 = "No te pillo wey";
-	}
+	} */
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
@@ -39,7 +28,7 @@ app.post("/questions", function(req, res) {
 				items: [
 				{
 					simpleResponse: {
-					textToSpeech: pregunta1
+					textToSpeech: speech
 					}
 				}
 				]
@@ -50,9 +39,9 @@ app.post("/questions", function(req, res) {
 	return res.json({
 		payload: speechResponse,
 		data: speechResponse,
-		fulfillmentText: pregunta1,
-		speech: pregunta1,
-		displayText: pregunta1,
+		fulfillmentText: speech,
+		speech: speech,
+		displayText: speech,
 		source: "webhook-echo-sample"
 	});
 });
