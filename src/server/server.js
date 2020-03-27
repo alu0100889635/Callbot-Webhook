@@ -21,7 +21,7 @@ app.post("/questions", function(req, res) {
 				items: [
 				{
 					simpleResponse: {
-					textToSpeech: speech
+					textToSpeech: "Ha contestado: " + speech + "."
 					}
 				}
 				]
@@ -32,9 +32,9 @@ app.post("/questions", function(req, res) {
 	return res.json({
 		payload: speechResponse,
 		data: speechResponse,
-		fulfillmentText: `Ha contestado: ${speech}.`,
-		speech: speech,
-		displayText: speech,
+		fulfillmentText: "Ha contestado: " + speech + ".",
+		speech: "Ha contestado: " + speech + ".",
+		displayText: "Ha contestado: " + speech + ".",
 		source: "webhook-echo-sample"
 	});
 });
