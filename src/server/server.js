@@ -14,7 +14,7 @@ app.post("/answers", function(req, res) {
     const speech = req.body.queryResult;
 	console.log(speech);
 
-	const speech2 = "hola";
+	const speech2 = "Hola, voy a guiarle a través de este test sobre el coronavirus (covid19).\n\nSi usted presenta una emergencia contacte con el 112.\n\nEste test no es un sustituto de un consejo, diagnóstico o tratamiento médico profesional. Consulte siempre a un profesional sobre síntomas serios u otro tipo de emergencias. ¿Desea comenzar?";
   
 	const speechResponse = {
 		google: {
