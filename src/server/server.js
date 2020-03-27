@@ -13,7 +13,7 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
-	const speech = req.body.queryResult.parameters.color;
+	const speech = req.body.queryResult.parameters.respuesta;
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
@@ -32,7 +32,7 @@ app.post("/questions", function(req, res) {
 	return res.json({
 		payload: speechResponse,
 		data: speechResponse,
-		fulfillmentText: speech,
+		fulfillmentText: `Ha contestado: ${speech}.`,
 		speech: speech,
 		displayText: speech,
 		source: "webhook-echo-sample"
