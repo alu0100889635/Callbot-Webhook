@@ -22,8 +22,11 @@ app.post("/questions", function(req, res) {
 		
 		data: {
 			"lang": "es",
-			"query": "hola",
 			"sessionId": "12345",
+		},
+
+		event:  {
+			"event": "welcome"
 		}
 	})  
 	.then((response) => {
