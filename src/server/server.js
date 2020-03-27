@@ -13,7 +13,7 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
-	const speech = req.body.queryResult;
+	const speech = req.body.queryResult.parameters.color;
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
