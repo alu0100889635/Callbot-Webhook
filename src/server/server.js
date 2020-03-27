@@ -13,7 +13,7 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
-	const speech = req.body;
+	const speech = req.body.querResult;
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
