@@ -29,11 +29,10 @@ app.post("/questions", function(req, res) {
 	const queryText = req.body.queryResult.queryText;
 	const intent = req.body.queryResult.intent.displayName;
 	console.log(req.body);
-	if(queryText == "hola"){
-		speech = bienvenida;
-	}
-	else {
-		if(intent == "1pregunta"){
+		if(intent == "Bienvenida"){
+			speech = bienvenida;
+		}
+		else if(intent == "1pregunta"){
 			speech = pregunta1;
 		}
 		else if(intent == "2pregunta"){
@@ -66,7 +65,6 @@ app.post("/questions", function(req, res) {
 				speech = pregunta5_yes;
 			}
 		}
-	}
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
