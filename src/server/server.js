@@ -22,22 +22,27 @@ const pregunta4 = "¿Algún profesional sanitario le ha manifestado que podría 
 const pregunta5 = "¿Presenta alguno de los siguientes síntomas? ¿Fiebre, Tos, Moqueo nasal o Dolor de garganta?"
 //const preguntas = [pregunta1, pregunta2, pregunta3, pregunta4, pregunta5];
 let speech = "";
-let recentlyTraveled;
-let sickContact;
 
 app.post("/questions", function(req, res) {
 	const queryText = req.body.queryResult.queryText;
+	const intent = req.body.queryResult.intent.displayName;
 	console.log(req.body);
 	if(queryText == "hola"){
 		speech = bienvenida;
 	}
 	else {
-		if(recentlyTraveled == null){
+		if(intent == "1pregunta"){
 			speech = pregunta1;
 		}
-		else if(sickContact == null){
-			sickContact = req.body.queryResult.parameters.SickContact;
-			speech = pregunta2
+		else if(intent == "2pregunta"){
+			const recentlyTraveled = req.body.queryResult.params.RecentlyTraveled;
+			console.log("Recently traveled es = " + recentlyTraveled);
+			speech = pregunta2;
+		}
+		else{
+			const sickContact = req.body.queryResult.params.SickContact;
+			console.log("Sick contact es = " + sickContact);
+			speech = pregunta3;
 		}
 	}
 	const speechResponse = {
