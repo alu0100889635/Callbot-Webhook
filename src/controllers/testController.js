@@ -42,32 +42,32 @@ module.exports.postTest = function (req, res) {
 			console.log("Health official es = " + answers.healthOfficial);
 			speech = questions.pregunta5;
 			break;
-		case "5pregunta-no":
+		case "5pregunta - no":
 			answers.commonSymptoms = parameters.CommonSymptoms;
 			console.log("Common Symptoms es = " + answers.commonSymptoms);
 			speech = questions.pregunta5_no;
 			break;
-		case "5pregunta-yes":
+		case "5pregunta -  yes":
 			answers.commonSymptoms = parameters.CommonSymptoms;
 			console.log("Common Symptoms es = " + answers.commonSymptoms);
 			speech = questions.pregunta5_yes;
 			break;
-		case "5pregunta-yes-yes": //sí tiene dificultad respiratoria
+		case "5pregunta - yes - yes": //sí tiene dificultad respiratoria
 			answers.difficultyBreathing = parameters.DifficultyBreathing;
 			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
-			speech = questions.pregunta5_yes_yes;
+			speech = questions .pregunta5_yes_yes;
 			break;
-		case "5pregunta-yes-no": //no tiene dificultad respiratoria
+		case "5pregunta - yes - no": //no tiene dificultad respiratoria
 			answers.difficultyBreathing = parameters.DifficultyBreathing;
 			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
 			speech = questions.pregunta5_yes_no;
 			break;
-		case "5pregunta-yes-no-no":
-			answers.riskyGroup = parameters.RiskyGroup;
+		case "5pregunta - yes - no - no":
+			answers.riskyGroup = parameters.RiskyGroup; 
 			console.log("Risky Group es = " + answers.riskyGroup);
 			speech = questions.pregunta5_yes_no_no;
 			break;
-		case "5pregunta-yes-no-yes":
+		case "5pregunta - yes - no - yes":
 			answers.riskyGroup = parameters.RiskyGroup;
 			console.log("Risky Group es = " + answers.riskyGroup);
 			speech = questions.pregunta5_yes_no_yes;
