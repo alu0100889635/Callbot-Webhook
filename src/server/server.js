@@ -20,6 +20,8 @@ const pregunta2 = "¿Ha estado en contacto con alguien que haya viajado a estos 
 const pregunta3 = "¿Ha estado en contacto con alguien que conozca que esté contagiado de coronavirus (covid19)?";
 const pregunta4 = "¿Algún profesional sanitario le ha manifestado que podría haber estado expuesto al coronavirus (covid19)?";
 const pregunta5 = "¿Presenta alguno de los siguientes síntomas? ¿Fiebre, Tos, Moqueo nasal o Dolor de garganta?"
+const pregunta5_yes = "¿Presenta dificultad respiratoria?";
+
 //const preguntas = [pregunta1, pregunta2, pregunta3, pregunta4, pregunta5];
 let speech = "";
 
@@ -57,7 +59,12 @@ app.post("/questions", function(req, res) {
 		else {
 			const commonSymptoms = req.body.queryResult.parameters.CommonSymptoms;
 			console.log("Common Symptoms es = " + commonSymptoms);
-			speech = "gracias";
+			if(intent == "5pregunta-no"){
+				speech = "gracias por su participación";
+			}
+			else{
+				speech = pregunta5_yes;
+			}
 		}
 	}
 	const speechResponse = {
