@@ -72,6 +72,9 @@ module.exports.postTest = function (req, res) {
 			console.log("Risky Group es = " + answers.riskyGroup);
 			speech = questions.pregunta5_yes_no_yes;
 			break;
+		default:
+			console.log(req.body.queryResult);
+			break;
 
 	}
 
