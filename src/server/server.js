@@ -13,7 +13,7 @@ app.use(cors()); */
 //app.use("/answers", answersRouter);
 
 app.post("/questions", function(req, res) {
-	const speech = req.body.queryResult.queryText;//.parameters.RecentlyTraveled;
+	const speech = req.body.queryResult.fulfillmentText;//.parameters.RecentlyTraveled;
 	console.log(req.body);
 	const speechResponse = {
 		google: {
@@ -22,7 +22,7 @@ app.post("/questions", function(req, res) {
 				items: [
 				{
 					simpleResponse: {
-					textToSpeech: "Ha contestado: " + speech + "."
+					textToSpeech: speech
 					}
 				}
 				]
@@ -33,9 +33,9 @@ app.post("/questions", function(req, res) {
 	return res.json({
 		payload: speechResponse,
 		data: speechResponse,
-		fulfillmentText: "Ha contestado: " + speech + ".",
-		speech: "Ha contestado: " + speech + ".",
-		displayText: "Ha contestado: " + speech + ".",
+		fulfillmentText: speech,
+		speech: speech,
+		displayText: speech,
 		source: "webhook-echo-sample"
 	});
 });
