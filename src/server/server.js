@@ -44,12 +44,12 @@ app.post("/questions", function(req, res) {
 			console.log("Sick contact es = " + sickContact);
 			speech = pregunta3;
 		}
-		else if(intent == "3pregunta"){
+		else if(intent == "4pregunta"){
 			const sickCovidContact = req.body.queryResult.parameters.SickCovidContact;
 			console.log("Sick covid contact es = " + sickCovidContact);
 			speech = pregunta4;
 		}
-		else if(intent == "4pregunta"){
+		else if(intent == "5pregunta"){
 			const healthOfficial = req.body.queryResult.parameters.HealthOfficial;
 			console.log("Health Official es = " + healthOfficial);
 			speech = pregunta5;
