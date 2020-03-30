@@ -1,8 +1,13 @@
 const questions = require("./questions.json");
+
 module.exports.postTest = function (req, res) {
 
-
-	
+	let answers = {
+		recentlyTraveled: "",
+		sickContact: "",
+		sickCovidContact: "",
+		healthOfficial: ""
+	}
 	let speech = "";
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
@@ -16,22 +21,22 @@ module.exports.postTest = function (req, res) {
 			speech = questions.pregunta1;
 			break;
 		case "2pregunta":
-			const recentlyTraveled = parameters.RecentlyTraveled;
+			respuestas.recentlyTraveled = parameters.RecentlyTraveled;
 			console.log("Recently traveled es = " + recentlyTraveled);
 			speech = questions.pregunta2;
 			break;
 		case "3pregunta":
-			const sickContact = parameters.SickContact;
+			respuestas.sickContact = parameters.SickContact;
 			console.log("Sick contact es = " + sickContact);
 			speech = questions.pregunta3;
 			break;
 		case "4pregunta":
-			const sickCovidContact = parameters.SickCovidContact;
+			respuestas.sickCovidContact = parameters.SickCovidContact;
 			console.log("Sick covid contact es = " + sickCovidContact);
 			speech = questions.pregunta4;
 			break;
 		case "5pregunta":
-			const healthOfficial = parameters.HealthOfficial;
+			respuestas.healthOfficial = parameters.HealthOfficial;
 			console.log("Health official es = " + healthOfficial);
 			speech = questions.pregunta5;
 			break;
