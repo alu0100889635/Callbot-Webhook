@@ -5,35 +5,65 @@ module.exports.postTest = function (req, res) {
 	
 	let speech = "";
 	const intent = req.body.queryResult.intent.displayName;
+	const parameters = req.body.queryResult.parameters;
 	console.log(req.body);
-		if(intent == "Bienvenida"){
+
+	switch(intent){
+		case "Bienvenida":
+			speech = questions.bienvenida;
+			break;
+		case "1pregunta":
+			speech = questions.pregunta1;
+			break;
+		case "2pregunta":
+			const recentlyTraveled = parameters.RecentlyTraveled;
+			console.log("Recently traveled es = " + recentlyTraveled);
+			speech = questions.pregunta2;
+			break;
+		case "3pregunta":
+			const sickContact = parameters.SickContact;
+			console.log("Sick contact es = " + sickContact);
+			speech = questions.pregunta3;
+			break;
+		case "4pregunta":
+			const sickCovidContact = parameters.SickCovidContact;
+			console.log("Sick covid contact es = " + sickCovidContact);
+			speech = questions.pregunta4;
+			break;
+		case "5pregunta":
+			const healthOfficial = parameters.HealthOfficial;
+			console.log("Health official es = " + healthOfficial);
+			speech = questions.pregunta5;
+			break;
+	}
+		/* if(intent == "Bienvenida"){
 			speech = questions.bienvenida;
 		}
 		else if(intent == "1pregunta"){
 			speech = questions.pregunta1;
 		}
 		else if(intent == "2pregunta"){
-			const recentlyTraveled = req.body.queryResult.parameters.RecentlyTraveled;
+			const recentlyTraveled = parameters.RecentlyTraveled;
 			console.log("Recently traveled es = " + recentlyTraveled);
 			speech = questions.pregunta2;
 		}
 		else if(intent == "3pregunta"){
-			const sickContact = req.body.queryResult.parameters.SickContact;
+			const sickContact = parameters.SickContact;
 			console.log("Sick contact es = " + sickContact);
 			speech = questions.pregunta3;
 		}
 		else if(intent == "4pregunta"){
-			const sickCovidContact = req.body.queryResult.parameters.SickCovidContact;
+			const sickCovidContact = parameters.SickCovidContact;
 			console.log("Sick covid contact es = " + sickCovidContact);
 			speech = questions.pregunta4;
 		}
 		else if(intent == "5pregunta"){
-			const healthOfficial = req.body.queryResult.parameters.HealthOfficial;
+			const healthOfficial = parameters.HealthOfficial;
 			console.log("Health Official es = " + healthOfficial);
 			speech = questions.pregunta5;
 		}
 		else {
-			const commonSymptoms = req.body.queryResult.parameters.CommonSymptoms;
+			const commonSymptoms = parameters.CommonSymptoms;
 			console.log("Common Symptoms es = " + commonSymptoms);
 			if(intent == "5pregunta-no"){
 				speech = "gracias por su participación";
@@ -41,7 +71,7 @@ module.exports.postTest = function (req, res) {
 			else{
 				speech = questions.pregunta5_yes;
 			}
-		}
+		} */
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
