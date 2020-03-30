@@ -35,12 +35,12 @@ app.post("/questions", function(req, res) {
 			speech = pregunta1;
 		}
 		else if(intent == "2pregunta"){
-			const recentlyTraveled = req.body.queryResult.params.RecentlyTraveled;
+			const recentlyTraveled = req.body.queryResult.parameters.RecentlyTraveled;
 			console.log("Recently traveled es = " + recentlyTraveled);
 			speech = pregunta2;
 		}
 		else{
-			const sickContact = req.body.queryResult.params.SickContact;
+			const sickContact = req.body.queryResult.parameters.SickContact;
 			console.log("Sick contact es = " + sickContact);
 			speech = pregunta3;
 		}
