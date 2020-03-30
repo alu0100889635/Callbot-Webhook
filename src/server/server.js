@@ -14,6 +14,7 @@ app.use(cors()); */
 
 app.post("/questions", function(req, res) {
 	const speech = req.body.queryResult.queryText;//.parameters.RecentlyTraveled;
+	console.log(req.body);
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
