@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const answerController = require("../controllers/answerController");
+const testController = require("../controllers/testController");
 
 /* router.get("/", phonecallController.showAll);
 router.get("/:id", phonecallController.showPhonecall); */
-//router.post("/", answerController.postAnswer);
+router.post("/questions", testController.postTest);
 /* router.delete("/:id", phonecallController.deletePhonecall);
 router.put("/:id", phonecallController.updatePhonecall);
  */

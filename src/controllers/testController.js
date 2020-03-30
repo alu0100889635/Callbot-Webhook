@@ -1,19 +1,4 @@
-'use strict';
-const { exec } = require("child_process");
-const axios = require('axios');
-const express = require("express");
-const app = express();
-const testRouter = require("../routers/testRouter");
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-/* app.use(morgan("tiny"));
-app.use(cors()); */
-
-app.use("/test", testRouter);
-
-//             1ªpreg,2ªpreg,3ªpreg,4ªpreg,5ªpreg  Array de preguntas
-/* const bienvenida = "Hola, voy a guiarle a través de este test sobre el coronavirus (covid19).\n\nSi usted presenta una emergencia contacte con el 112.\n\nEste test no es un sustituto de un consejo, diagnóstico o tratamiento médico profesional. Consulte siempre a un profesional sobre síntomas serios u otro tipo de emergencias. ¿Desea comenzar?"
+const bienvenida = "Hola, voy a guiarle a través de este test sobre el coronavirus (covid19).\n\nSi usted presenta una emergencia contacte con el 112.\n\nEste test no es un sustituto de un consejo, diagnóstico o tratamiento médico profesional. Consulte siempre a un profesional sobre síntomas serios u otro tipo de emergencias. ¿Desea comenzar?"
 const pregunta1 = "¿Ha viajado recientemente a alguno de los siguientes países?.España: las Comunidades Autónomas de Madrid y de La Rioja o los municipios de La Bastida y Vitoria (País Vasco). China: todas las provincias, incluyendo Hong Kong y Macao. Italia: todo el país. Francia: departamentos de Haut-Rhin (Grabd Est) y l\'Oise (Hauts-de-France). Alemania: departamento de Heinsberg (Renania del Norte-Westfalia)  Japón: isla de Hokkaidō. Corea del Sur. Singapur o Irán.";
 const pregunta2 = "¿Ha estado en contacto con alguien que haya viajado a estos países y que ahora esté enfermo?";
 const pregunta3 = "¿Ha estado en contacto con alguien que conozca que esté contagiado de coronavirus (covid19)?";
@@ -24,7 +9,8 @@ const pregunta5_yes = "¿Presenta dificultad respiratoria?";
 //const preguntas = [pregunta1, pregunta2, pregunta3, pregunta4, pregunta5];
 let speech = "";
 
-app.post("/questions", function(req, res) {
+function postTest(req, res) {
+
 	const intent = req.body.queryResult.intent.displayName;
 	console.log(req.body);
 		if(intent == "Bienvenida"){
@@ -86,44 +72,6 @@ app.post("/questions", function(req, res) {
 		displayText: speech,
 		source: "webhook-echo-sample"
 	});
-}); */
+};
 
-/* app.get("/answers", function(req, res) {
-    const speech = req.body.queryResult;
-	console.log(speech);
-
-	const speech2 = "Hola, voy a guiarle a través de este test sobre el coronavirus (covid19).\n\nSi usted presenta una emergencia contacte con el 112.\n\nEste test no es un sustituto de un consejo, diagnóstico o tratamiento médico profesional. Consulte siempre a un profesional sobre síntomas serios u otro tipo de emergencias. ¿Desea comenzar?";
-  
-	const speechResponse = {
-		google: {
-		expectUserResponse: true,
-		richResponse: {
-			items: [
-			{
-				simpleResponse: {
-				textToSpeech: speech2
-				}
-			}
-			]
-		}
-		}
-	};
-  
-	return res.json({
-		payload: speechResponse,
-		//data: speechResponse,
-		fulfillmentText: speech2,
-		speech: speech2,
-		displayText: speech2,
-		source: "webhook-echo-sample"
-	});
-}); */
-/* mongoose
-.connect("mongodb://localhost:27017/emergenciasdb", { useNewUrlParser: true, useUnifiedTopology: true })
-.then(console.log("DB connection was succesful"))
-.catch(err => console.log(err)); */
-
-app.set("port", process.env.PORT || 8000);
-const port = app.get("port");
-
-app.listen(port, () => console.log(`Listening on port ${port}!`));
+module.exports = postTest;
