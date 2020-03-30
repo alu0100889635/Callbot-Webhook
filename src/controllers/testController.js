@@ -51,7 +51,7 @@ module.exports.postTest = function (req, res) {
 			answers.commonSymptoms = parameters.CommonSymptoms;
 			console.log("Common Symptoms es = " + answers.commonSymptoms);
 			speech = questions.pregunta5_yes;
-			console.log(questions.pregunta5_yes);
+			console.log(speech);
 			break;
 		case "5pregunta - yes - yes": //sí tiene dificultad respiratoria
 			answers.difficultyBreathing = parameters.DifficultyBreathing;
