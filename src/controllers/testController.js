@@ -6,7 +6,9 @@ module.exports.postTest = function (req, res) {
 		recentlyTraveled: "",
 		sickContact: "",
 		sickCovidContact: "",
-		healthOfficial: ""
+		healthOfficial: "",
+		commonSymptoms: "",
+		difficultyBreathing: ""
 	}
 	let speech = "";
 	const intent = req.body.queryResult.intent.displayName;
@@ -40,43 +42,39 @@ module.exports.postTest = function (req, res) {
 			console.log("Health official es = " + answers.healthOfficial);
 			speech = questions.pregunta5;
 			break;
+		case "5pregunta-no":
+			answers.commonSymptoms = parameters.CommonSymptoms;
+			console.log("Common Symptoms es = " + answers.commonSymptoms);
+			speech = questions.pregunta5_no;
+			break;
+		case "5pregunta-yes":
+			answers.commonSymptoms = parameters.CommonSymptoms;
+			console.log("Common Symptoms es = " + answers.commonSymptoms);
+			speech = questions.pregunta5_yes;
+			break;
+		case "5pregunta-yes-yes": //sí tiene dificultad respiratoria
+			answers.difficultyBreathing = parameters.DifficultyBreathing;
+			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
+			speech = questions.pregunta5_yes_yes;
+			break;
+		case "5pregunta-yes-no": //no tiene dificultad respiratoria
+			answers.difficultyBreathing = parameters.DifficultyBreathing;
+			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
+			speech = questions.pregunta5_yes_no;
+			break;
+		case "5pregunta-yes-no-no":
+			answers.riskyGroup = parameters.RiskyGroup;
+			console.log("Risky Group es = " + answers.riskyGroup);
+			speech = questions.pregunta5_yes_no_no;
+			break;
+		case "5pregunta-yes-no-yes":
+			answers.riskyGroup = parameters.RiskyGroup;
+			console.log("Risky Group es = " + answers.riskyGroup);
+			speech = questions.pregunta5_yes_no_yes;
+			break;
+
 	}
-		/* if(intent == "Bienvenida"){
-			speech = questions.bienvenida;
-		}
-		else if(intent == "1pregunta"){
-			speech = questions.pregunta1;
-		}
-		else if(intent == "2pregunta"){
-			const recentlyTraveled = parameters.RecentlyTraveled;
-			console.log("Recently traveled es = " + recentlyTraveled);
-			speech = questions.pregunta2;
-		}
-		else if(intent == "3pregunta"){
-			const sickContact = parameters.SickContact;
-			console.log("Sick contact es = " + sickContact);
-			speech = questions.pregunta3;
-		}
-		else if(intent == "4pregunta"){
-			const sickCovidContact = parameters.SickCovidContact;
-			console.log("Sick covid contact es = " + sickCovidContact);
-			speech = questions.pregunta4;
-		}
-		else if(intent == "5pregunta"){
-			const healthOfficial = parameters.HealthOfficial;
-			console.log("Health Official es = " + healthOfficial);
-			speech = questions.pregunta5;
-		}
-		else {
-			const commonSymptoms = parameters.CommonSymptoms;
-			console.log("Common Symptoms es = " + commonSymptoms);
-			if(intent == "5pregunta-no"){
-				speech = "gracias por su participación";
-			}
-			else{
-				speech = questions.pregunta5_yes;
-			}
-		} */
+
 	const speechResponse = {
 		google: {
 			expectUserResponse: true,
