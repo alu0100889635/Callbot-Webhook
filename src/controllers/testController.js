@@ -72,6 +72,6 @@ function postTest(req, res) {
 		displayText: speech,
 		source: "webhook-echo-sample"
 	});
-};
+}
 
 module.exports = postTest;
