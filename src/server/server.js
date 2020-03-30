@@ -19,24 +19,25 @@ const pregunta1 = "¿Ha viajado recientemente a alguno de los siguientes países
 const pregunta2 = "¿Ha estado en contacto con alguien que haya viajado a estos países y que ahora esté enfermo?";
 const pregunta3 = "¿Ha estado en contacto con alguien que conozca que esté contagiado de coronavirus (covid19)?";
 const pregunta4 = "¿Algún profesional sanitario le ha manifestado que podría haber estado expuesto al coronavirus (covid19)?";
-const pregunta5 = "¿Presenta alguno de los siguientes síntomas? ¿Fiebre, Tos, Moqueo nasal o Dolor de garganta?";
+const pregunta5 = "¿Presenta alguno de los siguientes síntomas? ¿Fiebre, Tos, Moqueo nasal o Dolor de garganta?"
+//const preguntas = [pregunta1, pregunta2, pregunta3, pregunta4, pregunta5];
 let speech = "";
+let recentlyTraveled;
+let sickContact;
 
 app.post("/questions", function(req, res) {
-	const queryText = req.body.queryResult.queryText;//.parameters.RecentlyTraveled;
+	const queryText = req.body.queryResult.queryText;
 	console.log(req.body);
 	if(queryText == "hola"){
 		speech = bienvenida;
 	}
 	else {
-		if(contestadas[0] == false){
+		if(recentlyTraveled == null){
 			speech = pregunta1;
 		}
-		else if(contestadas[1] == false){
-			speech = pregunta2;
-		}
-		else{
-			speech = pregunta3;
+		else if(sickContact == null){
+			sickContact = req.body.queryResult.parameters.SickContact;
+			speech = pregunta2
 		}
 	}
 	const speechResponse = {
