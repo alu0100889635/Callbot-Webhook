@@ -21,23 +21,23 @@ module.exports.postTest = function (req, res) {
 			speech = questions.pregunta1;
 			break;
 		case "2pregunta":
-			respuestas.recentlyTraveled = parameters.RecentlyTraveled;
-			console.log("Recently traveled es = " + respuestas.recentlyTraveled);
+			answers.recentlyTraveled = parameters.RecentlyTraveled;
+			console.log("Recently traveled es = " + answers.recentlyTraveled);
 			speech = questions.pregunta2;
 			break;
 		case "3pregunta":
-			respuestas.sickContact = parameters.SickContact;
-			console.log("Sick contact es = " + respuestas.sickContact);
+			answers.sickContact = parameters.SickContact;
+			console.log("Sick contact es = " + answers.sickContact);
 			speech = questions.pregunta3;
 			break;
 		case "4pregunta":
-			respuestas.sickCovidContact = parameters.SickCovidContact;
-			console.log("Sick covid contact es = " + respuestas.sickCovidContact);
+			answers.sickCovidContact = parameters.SickCovidContact;
+			console.log("Sick covid contact es = " + answers.sickCovidContact);
 			speech = questions.pregunta4;
 			break;
 		case "5pregunta":
-			respuestas.healthOfficial = parameters.HealthOfficial;
-			console.log("Health official es = " + respuestas.healthOfficial);
+			answers.healthOfficial = parameters.HealthOfficial;
+			console.log("Health official es = " + answers.healthOfficial);
 			speech = questions.pregunta5;
 			break;
 	}
