@@ -13,7 +13,7 @@ module.exports.postTest = function (req, res) {
 	let speech = "";
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
-	console.log(req.body);
+	console.log(req.body + "HOla");
 
 	switch(intent){
 		case "Bienvenida":
