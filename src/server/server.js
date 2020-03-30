@@ -39,10 +39,25 @@ app.post("/questions", function(req, res) {
 			console.log("Recently traveled es = " + recentlyTraveled);
 			speech = pregunta2;
 		}
-		else{
+		else if(intent == "3pregunta"){
 			const sickContact = req.body.queryResult.parameters.SickContact;
 			console.log("Sick contact es = " + sickContact);
 			speech = pregunta3;
+		}
+		else if(intent == "3pregunta"){
+			const sickCovidContact = req.body.queryResult.parameters.SickCovidContact;
+			console.log("Sick covid contact es = " + sickCovidContact);
+			speech = pregunta4;
+		}
+		else if(intent == "4pregunta"){
+			const healthOfficial = req.body.queryResult.parameters.HealthOfficial;
+			console.log("Health Official es = " + healthOfficial);
+			speech = pregunta5;
+		}
+		else {
+			const commonSymptoms = req.body.queryResult.parameters.CommonSymptoms;
+			console.log("Common Symptoms es = " + commonSymptoms);
+			speech = "gracias";
 		}
 	}
 	const speechResponse = {
