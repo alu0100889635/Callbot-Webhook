@@ -29,7 +29,15 @@ app.post("/questions", function(req, res) {
 		speech = bienvenida;
 	}
 	else {
-		speech = "No te entiendo";
+		if(contestadas[0] == false){
+			speech = pregunta1;
+		}
+		else if(contestadas[1] == false){
+			speech = pregunta2;
+		}
+		else{
+			speech = pregunta3;
+		}
 	}
 	const speechResponse = {
 		google: {
