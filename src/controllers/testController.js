@@ -27,19 +27,23 @@ const sendPhonecallToDB =  async () => {
 	.catch(e => console.log(e));
 }
 
-const sendSubjectToDB = async () => {
-	
+const sendSubejectToDB = async () => {
+
 	axios.post(URL + "/subjects/addSubject", subject)
 	.then(response => {
 		console.log(response);
 		answers.subject_id = response;
 	})
 	.catch(e => console.log(e));
+}
 
+const sendDataToDB = async () => {
+	
+	await sendSubejectToDB();
 	await sendPhonecallToDB();
 }
 
-const cases = async (intent, parameters) => {
+const cases = (intent, parameters) => {
 
 	switch(intent){
 		case "Bienvenida":
@@ -121,7 +125,7 @@ const cases = async (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Subject es = ", subject);
-			await sendSubjectToDB();
+			sendDataToDB();
 			return questions.pregunta10;
 			
 		default:
