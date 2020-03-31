@@ -8,7 +8,9 @@
     "pregunta5_yes": "¿Presenta dificultad respiratoria?",
     "pregunta5_no": "Gracias.",
     "pregunta5_yes_no": "¿Se encuentra en alguna de estas situaciones?.Persona con 65 años o superior.Enfermedades cardíacas (por ejemplo: enfermedad de las arterias coronarias, enfermedad valvular o insuficiencia cardíaca).Enfermedades pulmonares(por ejemplo: asma o enfermedad de obstrucción pulmonar crónica).Enfermedades inmunosupresoras (por ejemplo: quimioterapia, transplante o diabetes).",
-    "pregunta5_yes_yes": "Tienes que hablar con el 112",
     "pregunta5_yes_no_no": "Tan amable",
-    "pregunta5_yes_no_yes": "Estás enfermo"
+    "pregunta5_yes_no_yes": "Estás enfermo",
+    "pregunta6": "¿Podría decirme su nombre completo?",
+    "pregunta7": "¿Podría decirme los dígitos y letra de su Documento Nacional de Identidad?",
+    "pregunta8": "Aún queda la dirección bb"
 }

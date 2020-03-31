@@ -1,6 +1,7 @@
 const questions = require("./questions.json");
 
 const cases = (intent, parameters) => {
+
 	let answers = {
 		recentlyTraveled: "",
 		sickContact: "",
@@ -9,6 +10,17 @@ const cases = (intent, parameters) => {
 		commonSymptoms: "",
 		difficultyBreathing: ""
 	}
+
+	let subject = {
+		fullName: "",
+		dni: "",
+		birthDate: "",
+		street: "",
+		city: "",
+		zipCode: "",
+		province: ""
+	}
+
 	switch(intent){
 		case "Bienvenida":
 			return questions.bienvenida;
@@ -38,23 +50,30 @@ const cases = (intent, parameters) => {
 			answers.commonSymptoms = parameters.CommonSymptoms;
 			console.log("Common Symptoms es = " + answers.commonSymptoms);
 			return questions.pregunta5_yes;
-			console.log(speech);
 		case "5pregunta - yes - yes": //sí tiene dificultad respiratoria
 			answers.difficultyBreathing = parameters.DifficultyBreathing;
 			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
-			return questions .pregunta5_yes_yes;
+			return questions .pregunta6;
 		case "5pregunta - yes - no": //no tiene dificultad respiratoria
 			answers.difficultyBreathing = parameters.DifficultyBreathing;
 			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
 			return questions.pregunta5_yes_no;
-		case "5pregunta - yes - no - no":
+		case "5pregunta - yes - no - no": //No pertenece a grupo de riesgo
 			answers.riskyGroup = parameters.RiskyGroup; 
 			console.log("Risky Group es = " + answers.riskyGroup);
 			return questions.pregunta5_yes_no_no;
-		case "5pregunta - yes - no - yes":
+		case "5pregunta - yes - no - yes": //Sí pertenece a grupo de riesgo
 			answers.riskyGroup = parameters.RiskyGroup;
 			console.log("Risky Group es = " + answers.riskyGroup);
-			return questions.pregunta5_yes_no_yes;
+			return questions.pregunta6;
+		case "6pregunta":
+			subject.fullName = parameters.FullName;
+			console.log("Full name es = " + subject.fullName);
+			return questions.pregunta7;
+		case "7pregunta":
+			subject.dni = parameters.DniNumber;
+			console.log("DNI es = " + subject.dni);
+			return questions.pregunta8;
 		default:
 			console.log(req.body.queryResult);
 			break;
@@ -63,85 +82,13 @@ const cases = (intent, parameters) => {
 }
 module.exports.postTest = function (req, res) {
 
-	/* let answers = {
-		recentlyTraveled: "",
-		sickContact: "",
-		sickCovidContact: "",
-		healthOfficial: "",
-		commonSymptoms: "",
-		difficultyBreathing: ""
-	} */
 	let speech = "";
 
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
-	console.log(req.body.queryResult);
 
 	speech = cases(intent, parameters);
 	console.log("Speech es = ", speech);
-	/* switch(intent){
-		case "Bienvenida":
-			speech = questions.bienvenida;
-			break;
-		case "1pregunta":
-			speech = questions.pregunta1;
-			break;
-		case "2pregunta":
-			answers.recentlyTraveled = parameters.RecentlyTraveled;
-			console.log("Recently traveled es = " + answers.recentlyTraveled);
-			speech = questions.pregunta2;
-			break;
-		case "3pregunta":
-			answers.sickContact = parameters.SickContact;
-			console.log("Sick contact es = " + answers.sickContact);
-			speech = questions.pregunta3;
-			break;
-		case "4pregunta":
-			answers.sickCovidContact = parameters.SickCovidContact;
-			console.log("Sick covid contact es = " + answers.sickCovidContact);
-			speech = questions.pregunta4;
-			break;
-		case "5pregunta":
-			answers.healthOfficial = parameters.HealthOfficial;
-			console.log("Health official es = " + answers.healthOfficial);
-			speech = questions.pregunta5;
-			break;
-		case "5pregunta - no":
-			answers.commonSymptoms = parameters.CommonSymptoms;
-			console.log("Common Symptoms es = " + answers.commonSymptoms);
-			speech = questions.pregunta5_no;
-			break;
-		case "5pregunta - yes":
-			answers.commonSymptoms = parameters.CommonSymptoms;
-			console.log("Common Symptoms es = " + answers.commonSymptoms);
-			speech = questions.pregunta5_yes;
-			console.log(speech);
-			break;
-		case "5pregunta - yes - yes": //sí tiene dificultad respiratoria
-			answers.difficultyBreathing = parameters.DifficultyBreathing;
-			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
-			speech = questions .pregunta5_yes_yes;
-			break;
-		case "5pregunta - yes - no": //no tiene dificultad respiratoria
-			answers.difficultyBreathing = parameters.DifficultyBreathing;
-			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
-			speech = questions.pregunta5_yes_no;
-			break;
-		case "5pregunta - yes - no - no":
-			answers.riskyGroup = parameters.RiskyGroup; 
-			console.log("Risky Group es = " + answers.riskyGroup);
-			speech = questions.pregunta5_yes_no_no;
-			break;
-		case "5pregunta - yes - no - yes":
-			answers.riskyGroup = parameters.RiskyGroup;
-			console.log("Risky Group es = " + answers.riskyGroup);
-			speech = questions.pregunta5_yes_no_yes;
-			break;
-		default:
-			console.log(req.body.queryResult);
-			break;
-
-	} */
 
 	const speechResponse = {
 		google: {
