@@ -21,14 +21,33 @@ let subject = {
 	address: ""
 }
 
-const sendPhonecallToDB =  async () => {
+async function sendPhonecallToDB(){
+	console.log("estamos dentro de sendPhonecalltodb");
+	axios.post("http://[::1]:3000/phonecalls/addPhonecall", answers)
+	.then(response => console.log(response))
+	.catch(e => console.log(e));
+
+}
+
+/* const sendPhonecallToDB =  async () => {
 
 	axios.post("http://[::1]:3000/phonecalls/addPhonecall", answers)
 	.then(response => console.log(response))
 	.catch(e => console.log(e));
+} */
+
+async function sendSubjectToDB(){
+	console.log("estamos dentro de sendSUbjectToDB");
+	axios.post("http://[::1]:3000/subjects/addSubject", subject)
+	.then(response => {
+		console.log(response);
+		answers.subject_id = response;
+	})
+	.catch(e => console.log(e));
+
 }
 
-const sendSubejectToDB = async () => {
+/* const sendSubjectToDB = async () => {
 
 	axios.post("http://[::1]:3000/subjects/addSubject", subject)
 	.then(response => {
@@ -36,11 +55,13 @@ const sendSubejectToDB = async () => {
 		answers.subject_id = response;
 	})
 	.catch(e => console.log(e));
-}
+} */
 
 const sendDataToDB = async () => {
+
+	console.log("entra en sendDataDB");
 	
-	await sendSubejectToDB();
+	await sendSubjectToDB();
 	await sendPhonecallToDB();
 }
 
@@ -126,10 +147,7 @@ const cases = (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Subject es = ", subject);
-			const enviar = async () =>{
-				await sendDataToDB();
-			}
-			enviar();
+			sendDataToDB();
 			return questions.pregunta10;
 			
 		default:
