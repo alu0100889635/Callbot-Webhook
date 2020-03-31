@@ -149,8 +149,6 @@ const cases = async (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Subject es = ", subject);
-			let respuesta = await sendDataToDB();
-			console.log("respuesta en cases", respuesta);
 			return questions.pregunta10;
 			
 		default:
@@ -167,6 +165,9 @@ module.exports.postTest = function (req, res) {
 	const parameters = req.body.queryResult.parameters;
 	console.log(req.body.queryResult);
 	speech = cases(intent, parameters);
+	if(intent == "9pregunta"){
+		sendDataToDB();
+	}
 	console.log("Speech es = ", speech);
 
 	const speechResponse = {
