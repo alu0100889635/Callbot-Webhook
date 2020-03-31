@@ -1,6 +1,14 @@
 const questions = require("./questions.json");
 
 const cases = (intent, parameters) => {
+	let answers = {
+		recentlyTraveled: "",
+		sickContact: "",
+		sickCovidContact: "",
+		healthOfficial: "",
+		commonSymptoms: "",
+		difficultyBreathing: ""
+	}
 	switch(intent){
 		case "Bienvenida":
 			return questions.bienvenida;
@@ -55,14 +63,14 @@ const cases = (intent, parameters) => {
 }
 module.exports.postTest = function (req, res) {
 
-	let answers = {
+	/* let answers = {
 		recentlyTraveled: "",
 		sickContact: "",
 		sickCovidContact: "",
 		healthOfficial: "",
 		commonSymptoms: "",
 		difficultyBreathing: ""
-	}
+	} */
 	let speech = "";
 
 	const intent = req.body.queryResult.intent.displayName;
@@ -148,6 +156,7 @@ module.exports.postTest = function (req, res) {
 			}
 		}
 	};
+	console.log("Speech response es = ", speechResponse);
   
 	return res.json({
 		payload: speechResponse,
