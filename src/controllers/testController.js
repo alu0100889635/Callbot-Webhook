@@ -39,7 +39,7 @@ const sendSubjectToDB = async () => {
 	await sendPhonecallToDB();
 }
 
-const cases = (intent, parameters) => {
+const cases = async (intent, parameters) => {
 
 	switch(intent){
 		case "Bienvenida":
