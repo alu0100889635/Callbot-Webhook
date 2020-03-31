@@ -23,14 +23,14 @@ let subject = {
 
 const sendPhonecallToDB =  async () => {
 
-	axios.post(URL + "http://localhost:3000/phonecalls/addPhonecall", answers)
+	axios.post("http://localhost:3000/phonecalls/addPhonecall", answers)
 	.then(response => console.log(response))
 	.catch(e => console.log(e));
 }
 
 const sendSubejectToDB = async () => {
 
-	axios.post(URL + "http://localhost:3000/subjects/addSubject", subject)
+	axios.post("http://localhost:3000/subjects/addSubject", subject)
 	.then(response => {
 		console.log(response);
 		answers.subject_id = response;
