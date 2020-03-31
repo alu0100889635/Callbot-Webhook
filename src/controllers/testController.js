@@ -149,7 +149,8 @@ const cases = (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Subject es = ", subject);
-			sendDataToDB();
+			let respuesta = await sendDataToDB();
+			console.log("respuesta en cases", respuesta);
 			return questions.pregunta10;
 			
 		default:
