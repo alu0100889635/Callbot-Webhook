@@ -22,14 +22,14 @@ let subject = {
 
 const sendToDB = async () => {
 	
-	await axios.post(URL + "/subjects", subject)
+	await axios.post(URL + "/subjects/addSubject", subject)
 	.then(response => {
 		console.log(response);
 		answers.subject_id = response;
 	})
 	.catch(e => console.log(e));
 
-	await axios.post(URL + "/phonecalls", answers)
+	await axios.post(URL + "/phonecalls/addPhonecall", answers)
 	.then(response => console.log(response))
 	.catch(e => console.log(e));
 }
