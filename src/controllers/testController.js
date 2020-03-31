@@ -10,7 +10,8 @@ let answers = {
 	commonSymptoms: false,
 	difficultyBreathing: false,
 	riskyGroup: false,
-	subject_id: ""
+	subject_id: "",
+	observations: []
 }
 
 let subject = {
