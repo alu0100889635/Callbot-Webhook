@@ -42,59 +42,59 @@ const cases = (intent, parameters) => {
 			return questions.pregunta1;
 		case "2pregunta":
 			answers.recentlyTraveled = parameters.RecentlyTraveled;
-			console.log("Recently traveled es = " + answers.recentlyTraveled);
+			console.log("Answers es = ", answers);
 			return questions.pregunta2;
 		case "3pregunta":
 			answers.sickContact = parameters.SickContact;
-			console.log("Sick contact es = " + answers.sickContact);
+			console.log("Answers es = ", answers);
 			return questions.pregunta3;
 		case "4pregunta":
 			answers.sickCovidContact = parameters.SickCovidContact;
-			console.log("Sick covid contact es = " + answers.sickCovidContact);
+			console.log("Answers es = ", answers);
 			return questions.pregunta4;
 		case "5pregunta":
 			answers.healthOfficial = parameters.HealthOfficial;
-			console.log("Health official es = " + answers.healthOfficial);
+			console.log("Answers es = ", answers);
 			return questions.pregunta5;
 		case "5pregunta - no":
 			answers.commonSymptoms = parameters.CommonSymptoms;
-			console.log("Common Symptoms es = " + answers.commonSymptoms);
+			console.log("Answers es = ", answers);
 			return questions.pregunta5_no;
 		case "5pregunta - yes":
 			answers.commonSymptoms = parameters.CommonSymptoms;
-			console.log("Common Symptoms es = " + answers.commonSymptoms);
+			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes;
 		case "5pregunta - yes - yes": //sí tiene dificultad respiratoria
 			answers.difficultyBreathing = parameters.DifficultyBreathing;
-			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
+			console.log("Answers es = ", answers);
 			return questions .pregunta6;
 		case "5pregunta - yes - no": //no tiene dificultad respiratoria
 			answers.difficultyBreathing = parameters.DifficultyBreathing;
-			console.log("Difficulty Breathing es = " + answers.difficultyBreathing);
+			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes_no;
 		case "5pregunta - yes - no - no": //No pertenece a grupo de riesgo
 			answers.riskyGroup = parameters.RiskyGroup; 
-			console.log("Risky Group es = " + answers.riskyGroup);
+			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes_no_no;
 		case "5pregunta - yes - no - yes": //Sí pertenece a grupo de riesgo
 			answers.riskyGroup = parameters.RiskyGroup;
-			console.log("Risky Group es = " + answers.riskyGroup);
+			console.log("Answers es = ", answers);
 			return questions.pregunta6;
 		case "6pregunta":
 			subject.fullName = parameters.FullName;
-			console.log("Full name es = " + subject.fullName);
+			console.log("Subject es = ", subject);
 			return questions.pregunta7;
 		case "7pregunta":
 			subject.dni = parameters.DniNumber;
-			console.log("DNI es = " + subject.dni);
+			console.log("Subject es = ", subject);
 			return questions.pregunta8;
 		case "8pregunta":
 			subject.birthDate= parameters.BirthDate;
-			console.log("Birthdate es = " + subject.birthDate);
+			console.log("Subject es = ", subject);
 			return questions.pregunta9;
 		case "9pregunta":
 			subject.address= parameters.Address;
-			console.log("Address es = " + subject.address);
+			console.log("Subject es = ", subject);
 			sendToDB();
 			return questions.pregunta10;
 			
