@@ -1,6 +1,5 @@
 'use strict';
-const { exec } = require("child_process");
-const axios = require('axios');
+
 const express = require("express");
 const app = express();
 const testRouter = require("../routers/testRouter");

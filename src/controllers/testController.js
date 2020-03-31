@@ -1,4 +1,19 @@
 const questions = require("./questions.json");
+const axios = require("axios");
+const URL = "http://localhost:3000";
+
+const sendToDB = async (answers, subject) => {
+	await axios.post(URL + "/subjects", subject)
+	.then(response => {
+		console.log(response);
+		answers.subject_id = response;
+	})
+	.catch(e => console.log(e));
+
+	await axios.post(URL + "/phonecalls", answers)
+	.then(response => console.log(response))
+	.catch(e => console.log(e));
+}
 
 const cases = (intent, parameters) => {
 
@@ -8,7 +23,9 @@ const cases = (intent, parameters) => {
 		sickCovidContact: "",
 		healthOfficial: "",
 		commonSymptoms: "",
-		difficultyBreathing: ""
+		difficultyBreathing: "",
+		riskyGroup: "",
+		subject_id: ""
 	}
 
 	let subject = {
@@ -78,6 +95,7 @@ const cases = (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Address es = " + subject.address);
+			sendToDB(answers, subject);
 			return questions.pregunta10;
 			
 		default:
