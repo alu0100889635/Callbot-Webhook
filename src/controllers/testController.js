@@ -78,6 +78,7 @@ module.exports.postTest = function (req, res) {
 	console.log(req.body.queryResult);
 
 	speech = cases(intent, parameters);
+	console.log("Speech es = ", speech);
 	/* switch(intent){
 		case "Bienvenida":
 			speech = questions.bienvenida;
@@ -156,7 +157,6 @@ module.exports.postTest = function (req, res) {
 			}
 		}
 	};
-	console.log("Speech response es = ", speechResponse);
   
 	return res.json({
 		payload: speechResponse,
