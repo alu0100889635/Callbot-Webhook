@@ -3,13 +3,13 @@ const axios = require("axios");
 const URL = "http://localhost:3000";
 
 let answers = {
-	recentlyTraveled: "",
-	sickContact: "",
-	sickCovidContact: "",
-	healthOfficial: "",
-	commonSymptoms: "",
-	difficultyBreathing: "",
-	riskyGroup: "",
+	recentlyTraveled: false,
+	sickContact: false,
+	sickCovidContact: false,
+	healthOfficial: false,
+	commonSymptoms: false,
+	difficultyBreathing: false,
+	riskyGroup: false,
 	subject_id: ""
 }
 
@@ -21,6 +21,7 @@ let subject = {
 }
 
 const sendToDB = async () => {
+	
 	await axios.post(URL + "/subjects", subject)
 	.then(response => {
 		console.log(response);
@@ -41,43 +42,63 @@ const cases = (intent, parameters) => {
 		case "1pregunta":
 			return questions.pregunta1;
 		case "2pregunta":
-			answers.recentlyTraveled = parameters.RecentlyTraveled;
+			if(parameters.RecentlyTraveled == "Sí"){
+				answers.recentlyTraveled = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta2;
 		case "3pregunta":
-			answers.sickContact = parameters.SickContact;
+			if(parameters.SickContact == "Sí"){
+				answers.sickContact = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta3;
 		case "4pregunta":
-			answers.sickCovidContact = parameters.SickCovidContact;
+			if(parameters.SickCovidContact == "Sí"){
+				answers.sickCovidContact = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta4;
 		case "5pregunta":
-			answers.healthOfficial = parameters.HealthOfficial;
+			if(parameters.HealthOfficial == "Sí"){
+				answers.healthOfficial = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta5;
 		case "5pregunta - no":
-			answers.commonSymptoms = parameters.CommonSymptoms;
+			if(parameters.CommonSymptoms == "Sí"){
+				answers.commonSymptoms = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta5_no;
 		case "5pregunta - yes":
-			answers.commonSymptoms = parameters.CommonSymptoms;
+			if(parameters.CommonSymptoms == "Sí"){
+				answers.commonSymptoms = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes;
 		case "5pregunta - yes - yes": //sí tiene dificultad respiratoria
-			answers.difficultyBreathing = parameters.DifficultyBreathing;
+			if(parameters.DifficultyBreathing == "Sí"){
+				answers.difficultyBreathing = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions .pregunta6;
 		case "5pregunta - yes - no": //no tiene dificultad respiratoria
-			answers.difficultyBreathing = parameters.DifficultyBreathing;
+			if(parameters.DifficultyBreathing == "Sí"){
+				answers.difficultyBreathing = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes_no;
 		case "5pregunta - yes - no - no": //No pertenece a grupo de riesgo
-			answers.riskyGroup = parameters.RiskyGroup; 
+			if(parameters.RiskyGroup == "Sí"){
+				answers.riskyGroup = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes_no_no;
 		case "5pregunta - yes - no - yes": //Sí pertenece a grupo de riesgo
-			answers.riskyGroup = parameters.RiskyGroup;
+			if(parameters.RiskyGroup == "Sí"){
+				answers.riskyGroup = true;
+			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta6;
 		case "6pregunta":
