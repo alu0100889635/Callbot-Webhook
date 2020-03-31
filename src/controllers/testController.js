@@ -86,7 +86,7 @@ module.exports.postTest = function (req, res) {
 
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
-
+	console.log(req.body.queryResult);
 	speech = cases(intent, parameters);
 	console.log("Speech es = ", speech);
 
