@@ -15,10 +15,7 @@ const cases = (intent, parameters) => {
 		fullName: "",
 		dni: "",
 		birthDate: "",
-		street: "",
-		city: "",
-		zipCode: "",
-		province: ""
+		address: ""
 	}
 
 	switch(intent){
@@ -74,6 +71,15 @@ const cases = (intent, parameters) => {
 			subject.dni = parameters.DniNumber;
 			console.log("DNI es = " + subject.dni);
 			return questions.pregunta8;
+		case "8pregunta":
+			subject.birthDate= parameters.BirthDate;
+			console.log("Birthdate es = " + subject.birthDate);
+			return questions.pregunta9;
+		case "9pregunta":
+			subject.address= parameters.Address;
+			console.log("Address es = " + subject.address);
+			return questions.pregunta10;
+			
 		default:
 			console.log(req.body.queryResult);
 			break;
