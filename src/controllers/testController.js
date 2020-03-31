@@ -20,18 +20,23 @@ let subject = {
 	address: ""
 }
 
-const sendToDB = async () => {
+const sendPhonecallToDB =  async () => {
+
+	axios.post(URL + "/phonecalls/addPhonecall", answers)
+	.then(response => console.log(response))
+	.catch(e => console.log(e));
+}
+
+const sendSubjectToDB = async () => {
 	
-	await axios.post(URL + "/subjects/addSubject", subject)
+	axios.post(URL + "/subjects/addSubject", subject)
 	.then(response => {
 		console.log(response);
 		answers.subject_id = response;
 	})
 	.catch(e => console.log(e));
 
-	await axios.post(URL + "/phonecalls/addPhonecall", answers)
-	.then(response => console.log(response))
-	.catch(e => console.log(e));
+	await sendPhonecallToDB();
 }
 
 const cases = (intent, parameters) => {
@@ -116,7 +121,7 @@ const cases = (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Subject es = ", subject);
-			sendToDB();
+			await sendSubjectToDB();
 			return questions.pregunta10;
 			
 		default:
