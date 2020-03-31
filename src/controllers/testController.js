@@ -1,25 +1,9 @@
 const questions = require("./questions.json");
 const axios = require("axios");
+let answers = require("./answers.json");
+let subject = require("./subject.json");
 const URL = "http://localhost:3000";
 
-let answers = {
-	recentlyTraveled: false,
-	sickContact: false,
-	sickCovidContact: false,
-	healthOfficial: false,
-	commonSymptoms: false,
-	difficultyBreathing: false,
-	riskyGroup: false,
-	subject_id: "",
-	observations: []
-}
-
-let subject = {
-	fullName: "",
-	dni: "",
-	birthDate: "",
-	address: ""
-}
 
 async function sendPhonecallToDB(){
 	console.log("estamos dentro de sendPhonecalltodb");
@@ -68,7 +52,6 @@ const sendDataToDB = async () => {
 }
 
 const cases = async (intent, parameters) => {
-
 	switch(intent){
 		case "Bienvenida":
 			return questions.bienvenida;
@@ -149,9 +132,6 @@ const cases = async (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Subject es = ", subject);
-			sendDataToDB()
-			.then(response => console.log(response))
-			.catch(e => console.log("error en cases", e));
 			return questions.pregunta10;
 			
 		default:

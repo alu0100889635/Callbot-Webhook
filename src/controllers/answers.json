@@ -1,0 +1,11 @@
+{
+	"recentlyTraveled": false,
+	"sickContact": false,
+	"sickCovidContact": false,
+	"healthOfficial": false,
+	"commonSymptoms": false,
+	"difficultyBreathing": false,
+	"riskyGroup": false,
+	"subject_id": "",
+	"observations": []
+}
