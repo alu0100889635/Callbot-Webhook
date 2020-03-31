@@ -61,8 +61,10 @@ const sendDataToDB = async () => {
 
 	console.log("entra en sendDataDB");
 	
-	await sendSubjectToDB();
-	await sendPhonecallToDB();
+	let respuesta1 = await sendSubjectToDB();
+	console.log("respuesta sujeto = ", respuesta1);
+	let respuesta2 = await sendPhonecallToDB();
+	console.log("respuesta llamada = ", respuesta2);
 }
 
 const cases = (intent, parameters) => {
