@@ -51,7 +51,7 @@ const sendDataToDB = async () => {
 	console.log("respuesta llamada = ", respuesta2);
 }
 
-const cases = async (intent, parameters) => {
+const cases = (intent, parameters) => {
 	switch(intent){
 		case "Bienvenida":
 			console.log("entra en bienvenida");
