@@ -2,7 +2,52 @@ const questions = require("./questions.json");
 const axios = require("axios");
 let answers = require("./answers.json");
 let subject = require("./subject.json");
+let finished = false;
 const URL = "http://localhost:3000";
+
+const sendPhonecallToDB =  async () => {
+
+	axios.post(URL + "/phonecalls/addPhonecall", answers)
+	.then(response => console.log(response))
+	.catch(e => console.log(e));
+}
+//comentario
+/* async function sendSubjectToDB(){
+	console.log("estamos dentro de sendSUbjectToDB");
+	axios.post("http://[::1]:3000/subjects/addSubject", subject)
+	.then(response => {
+		console.log(response);
+		answers.subject_id = response;
+	})
+	.catch(e => console.log(e));
+
+} */
+
+const sendSubjectToDB = async () => {
+
+	axios.post(URL + "/subjects/addSubject", subject)
+	.then(response => {
+		console.log(response);
+		answers.subject_id = response;
+	})
+	.catch(e => console.log(e));
+}
+
+const sendDataToDB = async () => {
+
+	console.log("entra en sendDataDB");
+	
+	let respuesta1 = await sendSubjectToDB();
+	console.log("respuesta sujeto = ", respuesta1);
+	let respuesta2 = await sendPhonecallToDB();
+	console.log("respuesta llamada = ", respuesta2);
+}
+const sendToDB = async () => {
+
+		let resultado = await sendDataToDB();
+		console.log("Resultado de sendtodatabase", resultado);
+
+}
 
 const cases = (intent, parameters) => {
 	switch(intent){
@@ -81,7 +126,7 @@ const cases = (intent, parameters) => {
 	}
 }
 
-module.exports.postTest = function (req, res) {
+module.exports.postTest = async function (req, res) {
 
 	let speech = "";
 
@@ -89,79 +134,34 @@ module.exports.postTest = function (req, res) {
 	const parameters = req.body.queryResult.parameters;
 	console.log(req.body.queryResult);
 	speech = cases(intent, parameters);
-
-	const speechResponse = {
-		google: {
-			expectUserResponse: true,
-			richResponse: {
-				items: [
-				{
-					simpleResponse: {
-					textToSpeech: speech
+	if(finished){
+		let respuesta = await sendToDB();
+		console.log("Este es el res de la funcion principal", respuesta);
+		return res.json();
+	}
+	else{
+		const speechResponse = {
+			google: {
+				expectUserResponse: true,
+				richResponse: {
+					items: [
+					{
+						simpleResponse: {
+						textToSpeech: speech
+						}
 					}
+					]
 				}
-				]
 			}
-		}
-	};
-  
-	return res.json({
-		payload: speechResponse,
-		data: speechResponse,
-		fulfillmentText: speech,
-		speech: speech,
-		displayText: speech,
-		source: "webhook-echo-sample"
-	});
-}
-
-const sendPhonecallToDB =  async () => {
-
-	axios.post(URL + "/phonecalls/addPhonecall", answers)
-	.then(response => console.log(response))
-	.catch(e => console.log(e));
-}
-//comentario
-/* async function sendSubjectToDB(){
-	console.log("estamos dentro de sendSUbjectToDB");
-	axios.post("http://[::1]:3000/subjects/addSubject", subject)
-	.then(response => {
-		console.log(response);
-		answers.subject_id = response;
-	})
-	.catch(e => console.log(e));
-
-} */
-
-const sendSubjectToDB = async () => {
-
-	axios.post(URL + "/subjects/addSubject", subject)
-	.then(response => {
-		console.log(response);
-		answers.subject_id = response;
-	})
-	.catch(e => console.log(e));
-}
-
-const sendDataToDB = async () => {
-
-	console.log("entra en sendDataDB");
-	
-	let respuesta1 = await sendSubjectToDB();
-	console.log("respuesta sujeto = ", respuesta1);
-	let respuesta2 = await sendPhonecallToDB();
-	console.log("respuesta llamada = ", respuesta2);
-}
-const sendToDB = async () => {
-
-		let resultado = await sendDataToDB();
-		console.log("Resultado de sendtodatabase", resultado);
-
-}
-
-
-module.exports.postData = async function (req, res) {
-	console.log("Estamos en postdata",req);
-	await sendToDB();
-	return res.json();
+		};
+	  
+		return res.json({
+			payload: speechResponse,
+			data: speechResponse,
+			fulfillmentText: speech,
+			speech: speech,
+			displayText: speech,
+			source: "webhook-echo-sample"
+		});
+	}
 }
