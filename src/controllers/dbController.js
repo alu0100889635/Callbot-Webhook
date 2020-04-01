@@ -50,11 +50,13 @@ const sendDataToDB = async () => {
 	console.log("respuesta llamada = ", respuesta2);
 }
 const sendToDB = async () => {
-	if(finished){
+
 		let resultado = await sendDataToDB();
 		console.log("Resultado de sendtodatabase", resultado);
-	}
-	else{
-		console.log("Aún no ha terminado la encuesta");
-	}
+
+}
+
+
+module.exports.postData = async function (req, res) {
+	await sendToDB();
 }
