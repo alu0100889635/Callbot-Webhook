@@ -161,5 +161,7 @@ const sendToDB = async () => {
 
 
 module.exports.postData = async function (req, res) {
+	console.log("Estamos en postdata",req);
 	await sendToDB();
+	return res.json();
 }
