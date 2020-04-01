@@ -3,7 +3,7 @@ const axios = require("axios");
 let answers = require("./answers.json");
 let subject = require("./subject.json");
 let finished = false;
-const URL = "http://localhost:60566";
+const URL = "http://localhost:3000";
 
 
 /* async function sendPhonecallToDB(){
