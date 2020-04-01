@@ -83,39 +83,24 @@ const cases = (intent, parameters) => {
 			console.log("Answers es = ", answers);
 			return questions.pregunta5;
 		case "5pregunta - no":
-			if(parameters.CommonSymptoms == "Sí"){
-				answers.commonSymptoms = true;
-			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta5_no;
 		case "5pregunta - yes":
-			if(parameters.CommonSymptoms == "Sí"){
-				answers.commonSymptoms = true;
-			}
+			answers.commonSymptoms = true;
 			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes;
 		case "5pregunta - yes - yes": //sí tiene dificultad respiratoria
-			if(parameters.DifficultyBreathing == "Sí"){
-				answers.difficultyBreathing = true;
-			}
+			answers.difficultyBreathing = true;
 			console.log("Answers es = ", answers);
 			return questions .pregunta6;
 		case "5pregunta - yes - no": //no tiene dificultad respiratoria
-			if(parameters.DifficultyBreathing == "Sí"){
-				answers.difficultyBreathing = true;
-			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes_no;
 		case "5pregunta - yes - no - no": //No pertenece a grupo de riesgo
-			if(parameters.RiskyGroup == "Sí"){
-				answers.riskyGroup = true;
-			}
 			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes_no_no;
 		case "5pregunta - yes - no - yes": //Sí pertenece a grupo de riesgo
-			if(parameters.RiskyGroup == "Sí"){
-				answers.riskyGroup = true;
-			}
+			answers.riskyGroup = true;
 			console.log("Answers es = ", answers);
 			return questions.pregunta6;
 		case "6pregunta":
