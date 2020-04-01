@@ -20,7 +20,7 @@ const sendPhonecallToDB =  async () => {
 	.then(response => console.log(response))
 	.catch(e => console.log(e));
 }
-//comentario
+
 /* async function sendSubjectToDB(){
 	console.log("estamos dentro de sendSUbjectToDB");
 	axios.post("http://[::1]:3000/subjects/addSubject", subject)
