@@ -35,21 +35,24 @@ const sendPhonecallToDB =  async () => {
 const sendSubjectToDB = async () => {
 
 	axios.post(URL + "/subjects/addSubject", subject)
-	.then(response => {
+	.then((response) => {
 		console.log(response);
 		answers.subject_id = response;
 	})
-	.catch(e => console.log(e));
+	.catch((e) => {
+		console.log("Este es el errorque no me deja continuar", e);
+	});
+
+	let respuesta2 = await sendPhonecallToDB();
+	console.log("respuesta llamada = ", respuesta2);
 }
 
 const sendDataToDB = async () => {
 
-	console.log("entra en sendDataDB");
-	
+	console.log("entra en sendDataDB"); 
 	let respuesta1 = await sendSubjectToDB();
 	console.log("respuesta sujeto = ", respuesta1);
-	let respuesta2 = await sendPhonecallToDB();
-	console.log("respuesta llamada = ", respuesta2);
+
 }
 
 const cases = (intent, parameters) => {
