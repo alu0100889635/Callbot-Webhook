@@ -127,14 +127,14 @@ const cases = async (intent, parameters) => {
 	}
 }
 
-module.exports.postTest = function (req, res) {
+module.exports.postTest = async function (req, res) {
 
 	let speech = "";
 
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
 	console.log(req.body.queryResult);
-	speech = cases(intent, parameters);
+	speech = await cases(intent, parameters);
 
 	const speechResponse = {
 		google: {
