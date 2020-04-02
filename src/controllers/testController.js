@@ -20,11 +20,13 @@ const sendSubjectToDB = async () => {
 		console.log(response);
 	})
 	.catch(e => console.log(e));
+
+	await sendPhonecallToDB();
 }
 
 const sendDataToDB = async () => {
 	await sendSubjectToDB();
-	await sendPhonecallToDB();
+	
 }
 
 const cases = async (intent, parameters) => {
