@@ -18,10 +18,9 @@ const sendSubjectToDB = async () => {
 	.then(response => {
 		answers.subject_id = response.data;
 		console.log("Respuesta de send subject todb", response.data);
+		await sendPhonecallToDB();
 	})
 	.catch(e => console.log(e));
-
-	await sendPhonecallToDB();
 }
 
 const sendDataToDB = async () => {
