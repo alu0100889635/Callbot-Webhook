@@ -16,8 +16,8 @@ const sendSubjectToDB = async () => {
 
 	axios.post(URL + "/subjects/addSubject", subject)
 	.then(response => {
-		response => console.log(response);
 		answers.subject_id = response.data;
+		console.log(response);
 	})
 	.catch(e => console.log(e));
 }
