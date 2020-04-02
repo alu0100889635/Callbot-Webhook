@@ -3,7 +3,7 @@ const axios = require("axios");
 let answers = require("./answers.json");
 let subject = require("./subject.json");
 let finished = false;
-const URL = "https://178.62.41.123:3000";
+const URL = "http://178.62.41.123:3000";
 
 const sendPhonecallToDB =  async () => {
 
@@ -49,7 +49,7 @@ const sendToDB = async () => {
 
 }
 
-const cases = (intent, parameters) => {
+const cases = async (intent, parameters) => {
 	switch(intent){
 		case "Bienvenida":
 			console.log("entra en bienvenida");
@@ -116,7 +116,8 @@ const cases = (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Subject es = ", subject);
-			finished = true;
+			let respuesta = await sendToDB();
+			console.log("Este es el res de la funcion principal", respuesta);
 			return questions.pregunta10;
 			
 		default:
@@ -126,7 +127,7 @@ const cases = (intent, parameters) => {
 	}
 }
 
-module.exports.postTest = async function (req, res) {
+module.exports.postTest = function (req, res) {
 
 	let speech = "";
 
@@ -134,34 +135,28 @@ module.exports.postTest = async function (req, res) {
 	const parameters = req.body.queryResult.parameters;
 	console.log(req.body.queryResult);
 	speech = cases(intent, parameters);
-	if(finished){
-		let respuesta = await sendToDB();
-		console.log("Este es el res de la funcion principal", respuesta);
-		return res.json();
-	}
-	else{
-		const speechResponse = {
-			google: {
-				expectUserResponse: true,
-				richResponse: {
-					items: [
-					{
-						simpleResponse: {
-						textToSpeech: speech
-						}
+
+	const speechResponse = {
+		google: {
+			expectUserResponse: true,
+			richResponse: {
+				items: [
+				{
+					simpleResponse: {
+					textToSpeech: speech
 					}
-					]
 				}
+				]
 			}
-		};
-	  
-		return res.json({
-			payload: speechResponse,
-			data: speechResponse,
-			fulfillmentText: speech,
-			speech: speech,
-			displayText: speech,
-			source: "webhook-echo-sample"
-		});
-	}
+		}
+	};
+	
+	return res.json({
+		payload: speechResponse,
+		data: speechResponse,
+		fulfillmentText: speech,
+		speech: speech,
+		displayText: speech,
+		source: "webhook-echo-sample"
+	});
 }
