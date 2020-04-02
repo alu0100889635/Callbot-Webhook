@@ -1,9 +1,9 @@
-const questions = require("./questions.json");
 const axios = require("axios");
+const URL = "http://178.62.41.123:3000";
+const questions = require("./questions.json");
 let answers = require("./answers.json");
 let subject = require("./subject.json");
-let finished = false;
-const URL = "http://178.62.41.123:3000";
+
 
 const sendPhonecallToDB =  async () => {
 
@@ -11,39 +11,20 @@ const sendPhonecallToDB =  async () => {
 	.then(response => console.log(response))
 	.catch(e => console.log(e));
 }
-//comentario
-/* async function sendSubjectToDB(){
-	console.log("estamos dentro de sendSUbjectToDB");
-	axios.post("http://[::1]:3000/subjects/addSubject", subject)
-	.then(response => {
-		console.log(response);
-		answers.subject_id = response;
-	})
-	.catch(e => console.log(e));
-
-} */
 
 const sendSubjectToDB = async () => {
 
 	axios.post(URL + "/subjects/addSubject", subject)
 	.then(response => {
-		console.log("Respuesta de añadir el sujeto", response.data);
+		response => console.log(response);
 		answers.subject_id = response.data;
-		console.log(answers);
 	})
 	.catch(e => console.log(e));
 }
 
 const sendDataToDB = async () => {
-
-	console.log("entra en sendDataDB");
 	await sendSubjectToDB();
-	//await sendPhonecallToDB();
-}
-const sendToDB = async () => {
-
-	await sendDataToDB();
-
+	await sendPhonecallToDB();
 }
 
 const cases = async (intent, parameters) => {
@@ -113,7 +94,7 @@ const cases = async (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Subject es = ", subject);
-			await sendToDB();
+			await sendDataToDB();
 			return questions.pregunta10;
 			
 		default:
