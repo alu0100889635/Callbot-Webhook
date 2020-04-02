@@ -27,7 +27,7 @@ const sendSubjectToDB = async () => {
 
 	axios.post(URL + "/subjects/addSubject", subject)
 	.then(response => {
-		console.log(response);
+		console.log("Respuesta de añadir el sujeto", response);
 		answers.subject_id = response;
 	})
 	.catch(e => console.log(e));
@@ -36,16 +36,12 @@ const sendSubjectToDB = async () => {
 const sendDataToDB = async () => {
 
 	console.log("entra en sendDataDB");
-	
-	let respuesta1 = await sendSubjectToDB();
-	console.log("respuesta sujeto = ", respuesta1);
-	let respuesta2 = await sendPhonecallToDB();
-	console.log("respuesta llamada = ", respuesta2);
+	await sendSubjectToDB();
+	//await sendPhonecallToDB();
 }
 const sendToDB = async () => {
 
-		let resultado = await sendDataToDB();
-		console.log("Resultado de sendtodatabase", resultado);
+	await sendDataToDB();
 
 }
 
@@ -116,8 +112,7 @@ const cases = async (intent, parameters) => {
 		case "9pregunta":
 			subject.address= parameters.Address;
 			console.log("Subject es = ", subject);
-			let respuesta = await sendToDB();
-			console.log("Este es el res de la funcion principal", respuesta);
+			await sendToDB();
 			return questions.pregunta10;
 			
 		default:
