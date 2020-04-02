@@ -6,7 +6,7 @@ let subject = require("./subject.json");
 
 
 const sendPhonecallToDB =  async () => {
-
+	console.log("Answers en sendphonecalltodb", answers);
 	axios.post(URL + "/phonecalls/addPhonecall", answers)
 	.then(response => console.log(response))
 	.catch(e => console.log(e));
@@ -17,7 +17,7 @@ const sendSubjectToDB = async () => {
 	axios.post(URL + "/subjects/addSubject", subject)
 	.then(response => {
 		answers.subject_id = response.data;
-		console.log(response);
+		console.log("Respuesta de send subject todb", response.data);
 	})
 	.catch(e => console.log(e));
 
