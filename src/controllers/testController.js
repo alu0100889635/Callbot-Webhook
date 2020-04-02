@@ -15,7 +15,7 @@ const sendPhonecallToDB =  async () => {
 const sendSubjectToDB = async () => {
 
 	axios.post(URL + "/subjects/addSubject", subject)
-	.then(response => {
+	.then(async response => {
 		answers.subject_id = response.data;
 		console.log("Respuesta de send subject todb", response.data);
 		await sendPhonecallToDB();
