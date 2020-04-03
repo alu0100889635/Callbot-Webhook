@@ -6,7 +6,7 @@ let subject = require("./subject.json");
 
 
 const sendPhonecallToDB =  async () => {
-	console.log("Answers en sendphonecalltodb", answers);
+	console.log("Answers es = ", answers);
 	axios.post(URL + "/phonecalls/addPhonecall", answers)
 	.then(response => console.log(response))
 	.catch(e => console.log(e));
@@ -14,18 +14,13 @@ const sendPhonecallToDB =  async () => {
 
 const sendSubjectToDB = async () => {
 
+	console.log("Subject es = ", subect);
 	axios.post(URL + "/subjects/addSubject", subject)
 	.then(async response => {
 		answers.subject_id = response.data;
-		console.log("Respuesta de send subject todb", response.data);
 		await sendPhonecallToDB();
 	})
 	.catch(e => console.log(e));
-}
-
-const sendDataToDB = async () => {
-	await sendSubjectToDB();
-	
 }
 
 const cases = async (intent, parameters) => {
@@ -36,66 +31,52 @@ const cases = async (intent, parameters) => {
 		case "1pregunta":
 			return questions.pregunta1;
 		case "2pregunta":
-			if(parameters.RecentlyTraveled == "Sí"){
+			if(parameters.recentlyTraveled == "Sí"){
 				answers.recentlyTraveled = true;
 			}
-			console.log("Answers es = ", answers);
 			return questions.pregunta2;
 		case "3pregunta":
-			if(parameters.SickContact == "Sí"){
+			if(parameters.sickContact == "Sí"){
 				answers.sickContact = true;
 			}
-			console.log("Answers es = ", answers);
 			return questions.pregunta3;
 		case "4pregunta":
-			if(parameters.SickCovidContact == "Sí"){
+			if(parameters.sickCovidContact == "Sí"){
 				answers.sickCovidContact = true;
 			}
-			console.log("Answers es = ", answers);
 			return questions.pregunta4;
 		case "5pregunta":
-			if(parameters.HealthOfficial == "Sí"){
+			if(parameters.healthOfficial == "Sí"){
 				answers.healthOfficial = true;
 			}
-			console.log("Answers es = ", answers);
 			return questions.pregunta5;
 		case "5pregunta - no":
-			console.log("Answers es = ", answers);
 			return questions.pregunta5_no;
 		case "5pregunta - yes":
 			answers.commonSymptoms = true;
-			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes;
 		case "5pregunta - yes - yes": //sí tiene dificultad respiratoria
 			answers.difficultyBreathing = true;
-			console.log("Answers es = ", answers);
 			return questions .pregunta6;
 		case "5pregunta - yes - no": //no tiene dificultad respiratoria
-			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes_no;
 		case "5pregunta - yes - no - no": //No pertenece a grupo de riesgo
-			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes_no_no;
 		case "5pregunta - yes - no - yes": //Sí pertenece a grupo de riesgo
 			answers.riskyGroup = true;
-			console.log("Answers es = ", answers);
 			return questions.pregunta6;
 		case "6pregunta":
-			subject.fullName = parameters.FullName;
-			console.log("Subject es = ", subject);
+			subject.fullName = parameters.fullName;
 			return questions.pregunta7;
 		case "7pregunta":
-			subject.dni = parameters.DniNumber;
-			console.log("Subject es = ", subject);
+			subject.dni = parameters.dniNumber;
 			return questions.pregunta8;
 		case "8pregunta":
-			subject.birthDate= parameters.BirthDate;
-			console.log("Subject es = ", subject);
+			subject.birthDate= parameters.birthDate;
 			return questions.pregunta9;
 		case "9pregunta":
-			subject.address= parameters.Address;
-			console.log("Subject es = ", subject);
-			await sendDataToDB();
+			subject.address= parameters.address;
+			await sendSubjectToDB();
 			return questions.pregunta10;
 			
 		default:
