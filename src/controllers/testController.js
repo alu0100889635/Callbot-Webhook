@@ -34,10 +34,10 @@ const parseBirthDate = (item) => {
 		for(let j = 0; j < months.length; j++){
 			if(date[i] == months[j]){
 				if(j.length = 1){
-					month = '0' + j;
+					month = '0' + (j+1);
 				}
 				else {
-					month = month + j;
+					month = month + (j+1);
 				}
 				console.log("EL mes es", month);
 			}
