@@ -29,7 +29,7 @@ const parseBirthDate = (item) => {
 	let month = "";
 	for(let i = 0; i < date.length; i++){
 		console.log("entra en el primer for");
-		for(let j = 0; j < months; j++){
+		for(let j = 0; j < months.length; j++){
 			console.log("entra en el segundo for");
 			if(date[i] == months[j]){
 				month = numbers[j];
