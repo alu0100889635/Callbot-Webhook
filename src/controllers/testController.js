@@ -26,7 +26,7 @@ const sendSubjectToDB = async () => {
 const parseBirthDate = (item) => {
 	const date = item.split(" ");
 	let month = "";
-	for(let i = 0; i < date; i++){
+	for(let i = 0; i < date.length; i++){
 		for(let j = 0; j < months; j++){
 			if(date[i] == months[j]){
 				month = numbers[j];
