@@ -27,8 +27,10 @@ const parseBirthDate = (item) => {
 	const date = item.split(" ");
 	console.log("este es el array", date);
 	let month = "";
-	for(let i = 0; i < date.length-1; i++){
-		for(let j = 0; j < months-1; j++){
+	for(let i = 0; i < date.length; i++){
+		console.log("entra en el primer for");
+		for(let j = 0; j < months; j++){
+			console.log("entra en el segundo for");
 			if(date[i] == months[j]){
 				month = numbers[j];
 				console.log("mes en el for", month);
@@ -38,7 +40,7 @@ const parseBirthDate = (item) => {
 	console.log("El año es ", date[date.length-1]);
 	console.log("El mes es ", month);
 	console.log("El día es ", date[0]);
-	const birthDate = date[date.lenght - 1] + "-" + month + "-" + date[0];
+	let birthDate = date[date.lenght - 1] + '-' + month + '-' + date[0];
 	console.log("Nuevo cumple = ", birthDate);
 	return birthDate;
 }
