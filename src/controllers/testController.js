@@ -5,6 +5,7 @@ let answers = require("./answers.json");
 let subject = require("./subject.json");
 let months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 let numbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+
 const sendPhonecallToDB =  async () => {
 	console.log("Answers es = ", answers);
 	axios.post(URL + "/phonecalls/addPhonecall", answers)
@@ -14,7 +15,7 @@ const sendPhonecallToDB =  async () => {
 
 const sendSubjectToDB = async () => {
 
-	console.log("Subject es = ", subect);
+	console.log("Subject es = ", subject);
 	axios.post(URL + "/subjects/addSubject", subject)
 	.then(async response => {
 		answers.subject_id = response.data;
@@ -28,7 +29,6 @@ const parseBirthDate = (item) => {
 	let month = "";
 	if(date[0].length = 1){
 		date[0] = '0' + date[0];
-		console.log("Nuevo día = ", date[0]);
 	}
 	for(let i = 0; i < date.length; i++){
 		for(let j = 0; j < months.length; j++){
@@ -37,12 +37,8 @@ const parseBirthDate = (item) => {
 			}
 		}
 	}
-	console.log("El año es ", date[date.length-1]);
-	console.log("El mes es ", month);
-	console.log("El día es ", date[0]);
-	let birthDate = date[date.length-1] + '-' + month + '-' + date[0];
-	console.log("Nuevo cumple = ", birthDate);
-	return birthDate;
+	return date[date.length-1] + '-' + month + '-' + date[0];
+
 }
 
 const cases = async (intent, parameters) => {
@@ -94,9 +90,7 @@ const cases = async (intent, parameters) => {
 			subject.dni = parameters.dniNumber;
 			return questions.pregunta8;
 		case "8pregunta":
-			console.log("Antiguo cumple = ", parameters.birthDate);
 			subject.birthDate= parseBirthDate(parameters.birthDate);
-			console.log("Nuevo cumple = ", subject.birthDate);
 			return questions.pregunta9;
 		case "9pregunta":
 			subject.address= parameters.address;
