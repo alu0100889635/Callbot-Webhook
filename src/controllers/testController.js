@@ -25,22 +25,22 @@ const sendSubjectToDB = async () => {
 
 const parseBirthDate = (item) => {
 	const date = item.split(" ");
-	console.log("este es el array", date);
 	let month = "";
+	if(date[0].length = 1){
+		date[0] = '0' + date[0];
+		console.log("Nuevo día = ", date[0]);
+	}
 	for(let i = 0; i < date.length; i++){
-		console.log("entra en el primer for");
 		for(let j = 0; j < months.length; j++){
-			console.log("entra en el segundo for");
 			if(date[i] == months[j]){
 				month = numbers[j];
-				console.log("mes en el for", month);
 			}
 		}
 	}
 	console.log("El año es ", date[date.length-1]);
 	console.log("El mes es ", month);
 	console.log("El día es ", date[0]);
-	let birthDate = date[date.lenght - 1] + '-' + month + '-' + date[0];
+	let birthDate = date[date.length-1] + '-' + month + '-' + date[0];
 	console.log("Nuevo cumple = ", birthDate);
 	return birthDate;
 }
