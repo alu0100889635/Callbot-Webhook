@@ -33,7 +33,11 @@ const parseBirthDate = (item) => {
 			}
 		}
 	}
+	console.log("El año es ", date[date.lenght-1]);
+	console.log("El mes es ", month);
+	console.log("El día es ", date[0]);
 	const birthDate = date[date.lenght - 1] + "-" + month + "-" + date[0];
+	console.log("Nuevo cumple = ", birthDate);
 	return birthDate;
 }
 
