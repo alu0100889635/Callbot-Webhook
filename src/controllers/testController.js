@@ -4,7 +4,6 @@ const questions = require("./questions.json");
 let answers = require("./answers.json");
 let subject = require("./subject.json");
 let months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
-let numbers = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 
 const sendPhonecallToDB =  async () => {
 	console.log("Answers es = ", answers);
@@ -39,7 +38,6 @@ const parseBirthDate = (item) => {
 				else {
 					month = month + (j+1);
 				}
-				console.log("EL mes es", month);
 			}
 		}
 	}
