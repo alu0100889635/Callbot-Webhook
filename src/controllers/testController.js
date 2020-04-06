@@ -120,6 +120,9 @@ const cases = async (intent, parameters) => {
 			return questions.pregunta10;
 		case "1pregunta - fallback":
 			return questions.fallback + questions.pregunta1;
+
+		case "2pregunta - fallback":
+			return questions.fallback + questions.pregunta2;
 			
 		default:
 			console.log(intent);
@@ -134,64 +137,30 @@ module.exports.postTest = async function (req, res) {
 
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
-	/* const contexts = req.body.queryResult.outputContexts;
-	intentsArray.push(intent);
-	console.log(req.body.queryResult); */
+	console.log(req.body.queryResult); 
 	speech = await cases(intent, parameters);
 
-	/* if(speech == questions.fallback){
-		let newIntent = intentsArray[intentsArray.length-2];
-		speech = questions.fallback + await cases(newIntent, parameters);
-		const speechResponse = {
-			google: {
-				expectUserResponse: true,
-				outputContexts: [contexts],
-				richResponse: {
-					items: [
-					{
-						simpleResponse: {
-						textToSpeech: speech
-						}
+	const speechResponse = {
+		google: {
+			expectUserResponse: true,
+			richResponse: {
+				items: [
+				{
+					simpleResponse: {
+					textToSpeech: speech
 					}
-					]
 				}
+				]
 			}
 		}
-		return res.json({
-			payload: speechResponse,
-			data: speechResponse,
-			fulfillmentText: speech,
-			speech: speech,
-			displayText: speech,
-			source: "webhook-echo-sample"
-		});
 	}
-
-	else { */
-		const speechResponse = {
-			google: {
-				expectUserResponse: true,
-				richResponse: {
-					items: [
-					{
-						simpleResponse: {
-						textToSpeech: speech
-						}
-					}
-					]
-				}
-			}
-		}
-		return res.json({
-			payload: speechResponse,
-			data: speechResponse,
-			fulfillmentText: speech,
-			speech: speech,
-			displayText: speech,
-			source: "webhook-echo-sample"
-		});
-	//}
-
-	
+	return res.json({
+		payload: speechResponse,
+		data: speechResponse,
+		fulfillmentText: speech,
+		speech: speech,
+		displayText: speech,
+		source: "webhook-echo-sample"
+	});	
 
 }
