@@ -134,6 +134,7 @@ module.exports.postTest = async function (req, res) {
 
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
+	const contexts = req.body.queryResult.outputContexts;
 	intentsArray.push(intent);
 	console.log(req.body.queryResult);
 	speech = await cases(intent, parameters);
@@ -145,9 +146,7 @@ module.exports.postTest = async function (req, res) {
 		const speechResponse = {
 			google: {
 				expectUserResponse: true,
-				systemIntent: {
-					intent: newIntent
-				},
+				outputContexts: contexts,
 				richResponse: {
 					items: [
 					{
