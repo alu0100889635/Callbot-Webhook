@@ -117,6 +117,8 @@ const cases = async (intent, parameters) => {
 			subject.address= parameters.address;
 			await sendSubjectToDB();
 			return questions.pregunta10;
+		case "Default Fallback Intent":
+			return "No le he entendido bien, repita por favor."	
 			
 		default:
 			console.log(req.body.queryResult);
