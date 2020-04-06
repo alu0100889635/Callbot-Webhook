@@ -117,8 +117,8 @@ const cases = async (intent, parameters) => {
 			subject.address= parameters.address;
 			await sendSubjectToDB();
 			return questions.pregunta10;
-		case "Default Fallback Intent":
-			return "No le he entendido bien, repita por favor."	
+		/* case "Default Fallback Intent":
+			return false; */
 			
 		default:
 			console.log(req.body.queryResult);
@@ -134,8 +134,9 @@ module.exports.postTest = async function (req, res) {
 
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
+	const context = req.body.queryResult.outputContexts[0];
 	console.log(req.body.queryResult);
-	speech = await cases(intent, parameters);
+	speech = await cases(intent, parameters, context);
 
 	const speechResponse = {
 		google: {
