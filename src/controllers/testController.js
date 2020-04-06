@@ -141,7 +141,7 @@ module.exports.postTest = async function (req, res) {
 	if(speech == ""){
 		let newIntent = intentsArray[intentsArray.length-2];
 		console.log("este es nuevo item", newIntent);
-		speech = "Lo siento. No te he entendido bien." + await cases(newIntent, parameters);
+		speech = "Lo siento. No le he entendido bien.\n" + await cases(newIntent, parameters);
 	}
 
 	const speechResponse = {
