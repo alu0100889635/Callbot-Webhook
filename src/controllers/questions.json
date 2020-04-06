@@ -13,5 +13,6 @@
     "pregunta7": "¿Podría decirme los dígitos y letra de su Documento Nacional de Identidad?",
     "pregunta8": "¿Podría decirme su fecha de nacimiento?",
     "pregunta9": "¿Podría decirme su dirección, población y código postal?",
-    "pregunta10": "Ahora mismo le atenderá un operador. Gracias por su paciencia."
+    "pregunta10": "Ahora mismo le atenderá un operador. Gracias por su paciencia.",
+    "fallback": "Lo siento. No le he entendido bien.\n"
 }

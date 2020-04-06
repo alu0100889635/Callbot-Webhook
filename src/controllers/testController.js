@@ -119,7 +119,7 @@ const cases = async (intent, parameters) => {
 			await sendSubjectToDB();
 			return questions.pregunta10;
 		case "Default Fallback Intent":
-			return "";
+			return questions.fallback;
 			
 		default:
 			console.log(req.body.queryResult);
@@ -138,10 +138,10 @@ module.exports.postTest = async function (req, res) {
 	console.log(req.body.queryResult);
 	speech = await cases(intent, parameters);
 
-	if(speech == ""){
+	if(speech == questions.fallback){
 		let newIntent = intentsArray[intentsArray.length-2];
 		console.log("este es nuevo item", newIntent);
-		speech = "Lo siento. No le he entendido bien.\n" + await cases(newIntent, parameters);
+		speech = questions.fallback + await cases(newIntent, parameters);
 	}
 
 	const speechResponse = {
