@@ -134,7 +134,7 @@ module.exports.postTest = async function (req, res) {
 
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
-	intentArrays.push(intent);
+	intentsArray.push(intent);
 	console.log(req.body.queryResult);
 	speech = await cases(intent, parameter);
 
