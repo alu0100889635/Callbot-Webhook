@@ -142,29 +142,58 @@ module.exports.postTest = async function (req, res) {
 		let newIntent = intentsArray[intentsArray.length-2];
 		console.log("este es nuevo item", newIntent);
 		speech = questions.fallback + await cases(newIntent, parameters);
-	}
-
-	const speechResponse = {
-		google: {
-			expectUserResponse: true,
-			richResponse: {
-				items: [
-				{
-					simpleResponse: {
-					textToSpeech: speech
+		const speechResponse = {
+			google: {
+				expectUserResponse: true,
+				systemIntent: {
+					intent: newIntent
+				},
+				richResponse: {
+					items: [
+					{
+						simpleResponse: {
+						textToSpeech: speech
+						}
 					}
+					]
 				}
-				]
 			}
 		}
-	};
+		return res.json({
+			payload: speechResponse,
+			data: speechResponse,
+			fulfillmentText: speech,
+			speech: speech,
+			displayText: speech,
+			source: "webhook-echo-sample"
+		});
+	}
+
+	else {
+		const speechResponse = {
+			google: {
+				expectUserResponse: true,
+				richResponse: {
+					items: [
+					{
+						simpleResponse: {
+						textToSpeech: speech
+						}
+					}
+					]
+				}
+			}
+		}
+		return res.json({
+			payload: speechResponse,
+			data: speechResponse,
+			fulfillmentText: speech,
+			speech: speech,
+			displayText: speech,
+			source: "webhook-echo-sample"
+		});
+	}
+
 	
-	return res.json({
-		payload: speechResponse,
-		data: speechResponse,
-		fulfillmentText: speech,
-		speech: speech,
-		displayText: speech,
-		source: "webhook-echo-sample"
-	});
+
 }
