@@ -56,9 +56,10 @@ const parseBirthDate = (item) => {
 
 
 const parseDni = (item) => {
-	item = item.replace(/\s+/g, '');
-	item = item.toUpperCase();
-	console.log("Nuevo dni = ", item);
+	let newDni = item;
+	newDni = newDni.replace(/\s+/g, '');
+	newDni = newDni.toUpperCase();
+	console.log("Nuevo dni = ", newDni);
 }
 
 const cases = async (intent, parameters) => {
