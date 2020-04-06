@@ -122,7 +122,7 @@ const cases = async (intent, parameters) => {
 			return questions.fallback;
 			
 		default:
-			console.log(req.body.queryResult);
+			console.log(intent);
 			break;
 
 	}
