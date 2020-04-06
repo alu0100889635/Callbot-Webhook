@@ -56,10 +56,9 @@ const parseBirthDate = (item) => {
 
 
 const parseDni = (item) => {
-	let newDni = item;
-	newDni = newDni.replace(/\s+/g, '');
-	newDni = newDni.toUpperCase();
-	console.log("Nuevo dni = ", newDni);
+	item = item.replace(/\s+/g, '');
+	item = item.toUpperCase();
+	console.log("Nuevo dni = ", item);
 }
 
 const cases = async (intent, parameters) => {
@@ -124,8 +123,6 @@ const cases = async (intent, parameters) => {
 
 	}
 }
-
-parseDni();
 
 
 module.exports.postTest = async function (req, res) {
