@@ -59,6 +59,7 @@ const parseDni = (item) => {
 	item = item.replace(/\s+/g, '');
 	item = item.toUpperCase();
 	console.log("Nuevo dni = ", item);
+	return item;
 }
 
 const cases = async (intent, parameters) => {
