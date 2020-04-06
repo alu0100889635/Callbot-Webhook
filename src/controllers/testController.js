@@ -139,7 +139,7 @@ module.exports.postTest = async function (req, res) {
 	speech = await cases(intent, parameters);
 
 	if(speech == ""){
-		let newIntent = intents[intents.length-1];
+		let newIntent = intentsArray[intentsArray.length-1];
 		console.log("este es nuevo item", newIntent);
 		speech = await cases(newIntent, parameters);
 	}
