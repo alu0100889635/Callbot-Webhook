@@ -4,6 +4,7 @@ const questions = require("./questions.json");
 let answers = require("./answers.json");
 let subject = require("./subject.json");
 let months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
+let intentsArray = [];
 
 const sendPhonecallToDB =  async () => {
 	console.log("Answers es = ", answers);
@@ -117,8 +118,8 @@ const cases = async (intent, parameters) => {
 			subject.address= parameters.address;
 			await sendSubjectToDB();
 			return questions.pregunta10;
-		/* case "Default Fallback Intent":
-			return false; */
+		case "Default Fallback Intent":
+			return "";
 			
 		default:
 			console.log(req.body.queryResult);
@@ -127,38 +128,71 @@ const cases = async (intent, parameters) => {
 	}
 }
 
-
 module.exports.postTest = async function (req, res) {
 
 	let speech = "";
 
 	const intent = req.body.queryResult.intent.displayName;
+	intentArrays.push(intent);
 	const parameters = req.body.queryResult.parameters;
 	const context = req.body.queryResult.outputContexts[0];
 	console.log(req.body.queryResult);
-	speech = await cases(intent, parameters, context);
+	speech = await cases(intent, parameter);
 
-	const speechResponse = {
-		google: {
-			expectUserResponse: true,
-			richResponse: {
-				items: [
-				{
-					simpleResponse: {
-					textToSpeech: speech
+	if(speech == ""){
+		let newIntent = intents[intents.length-1];
+		speech = await cases(newIntent, parameters);
+		const speechResponse = {
+			google: {
+				expectUserResponse: true,
+				systemIntent: {
+					intent: newIntent 
+				},
+				richResponse: {
+					items: [
+					{
+						simpleResponse: {
+						textToSpeech: speech
+						}
 					}
+					]
 				}
-				]
 			}
-		}
-	};
+		};
+		
+		return res.json({
+			payload: speechResponse,
+			data: speechResponse,
+			fulfillmentText: speech,
+			speech: speech,
+			displayText: speech,
+			source: "webhook-echo-sample"
+		});
 	
-	return res.json({
-		payload: speechResponse,
-		data: speechResponse,
-		fulfillmentText: speech,
-		speech: speech,
-		displayText: speech,
-		source: "webhook-echo-sample"
-	});
+	}
+	else{
+		const speechResponse = {
+			google: {
+				expectUserResponse: true,
+				richResponse: {
+					items: [
+					{
+						simpleResponse: {
+						textToSpeech: speech
+						}
+					}
+					]
+				}
+			}
+		};
+		
+		return res.json({
+			payload: speechResponse,
+			data: speechResponse,
+			fulfillmentText: speech,
+			speech: speech,
+			displayText: speech,
+			source: "webhook-echo-sample"
+		});
+	}
 }
