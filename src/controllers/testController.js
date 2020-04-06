@@ -23,6 +23,15 @@ const sendSubjectToDB = async () => {
 	.catch(e => console.log(e));
 }
 
+/* axios.delete(URL + usuario)
+.then(async response => {
+	console.log(response)
+	await axios.get(URL)//tu get de usuarios
+	.then(response => console.log(response))
+	.catch(e => console.log(e))
+})
+.catch(error => console.log(error)) */
+
 const parseBirthDate = (item) => {
 	const date = item.split(" ");
 	let month = "";
@@ -43,6 +52,13 @@ const parseBirthDate = (item) => {
 	}
 	return date[date.length-1] + '-' + month + '-' + date[0];
 
+}
+
+
+const parseDni = (item) => {
+	item = item.replace(/\s+/g, '');
+	item = item.toUpperCase();
+	console.log("Nuevo dni = ", item);
 }
 
 const cases = async (intent, parameters) => {
@@ -91,7 +107,7 @@ const cases = async (intent, parameters) => {
 			subject.fullName = parameters.fullName;
 			return questions.pregunta7;
 		case "7pregunta":
-			subject.dni = parameters.dniNumber;
+			subject.dni = parseDni(parameters.dniNumber);
 			return questions.pregunta8;
 		case "8pregunta":
 			subject.birthDate= parseBirthDate(parameters.birthDate);
@@ -107,6 +123,9 @@ const cases = async (intent, parameters) => {
 
 	}
 }
+
+parseDni();
+
 
 module.exports.postTest = async function (req, res) {
 
