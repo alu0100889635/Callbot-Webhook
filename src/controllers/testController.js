@@ -119,7 +119,7 @@ const cases = async (intent, parameters) => {
 			await sendSubjectToDB();
 			return questions.pregunta10;
 		case "1pregunta - fallback":
-			return questions.pregunta1;
+			return questions.fallback + questions.pregunta1;
 			
 		default:
 			console.log(intent);
