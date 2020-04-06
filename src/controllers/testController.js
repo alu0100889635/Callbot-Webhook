@@ -136,7 +136,7 @@ module.exports.postTest = async function (req, res) {
 	const parameters = req.body.queryResult.parameters;
 	intentsArray.push(intent);
 	console.log(req.body.queryResult);
-	speech = await cases(intent, parameter);
+	speech = await cases(intent, parameters);
 
 	if(speech == ""){
 		let newIntent = intents[intents.length-1];
