@@ -118,7 +118,7 @@ const cases = async (intent, parameters) => {
 			subject.address= parameters.address;
 			await sendSubjectToDB();
 			return questions.pregunta10;
-		case "Default Fallback Intent":
+		case "1pregunta - fallback":
 			return questions.fallback;
 			
 		default:
