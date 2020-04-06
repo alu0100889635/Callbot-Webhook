@@ -134,19 +134,18 @@ module.exports.postTest = async function (req, res) {
 
 	const intent = req.body.queryResult.intent.displayName;
 	const parameters = req.body.queryResult.parameters;
-	const contexts = req.body.queryResult.outputContexts;
+	/* const contexts = req.body.queryResult.outputContexts;
 	intentsArray.push(intent);
-	console.log(req.body.queryResult);
+	console.log(req.body.queryResult); */
 	speech = await cases(intent, parameters);
 
-	if(speech == questions.fallback){
+	/* if(speech == questions.fallback){
 		let newIntent = intentsArray[intentsArray.length-2];
-		console.log("este es nuevo item", newIntent);
 		speech = questions.fallback + await cases(newIntent, parameters);
 		const speechResponse = {
 			google: {
 				expectUserResponse: true,
-				outputContexts: contexts,
+				outputContexts: [contexts],
 				richResponse: {
 					items: [
 					{
@@ -168,7 +167,7 @@ module.exports.postTest = async function (req, res) {
 		});
 	}
 
-	else {
+	else { */
 		const speechResponse = {
 			google: {
 				expectUserResponse: true,
@@ -191,7 +190,7 @@ module.exports.postTest = async function (req, res) {
 			displayText: speech,
 			source: "webhook-echo-sample"
 		});
-	}
+	//}
 
 	
 
