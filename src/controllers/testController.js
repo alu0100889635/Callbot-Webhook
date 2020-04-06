@@ -133,66 +133,38 @@ module.exports.postTest = async function (req, res) {
 	let speech = "";
 
 	const intent = req.body.queryResult.intent.displayName;
-	intentArrays.push(intent);
 	const parameters = req.body.queryResult.parameters;
-	const context = req.body.queryResult.outputContexts[0];
+	intentArrays.push(intent);
 	console.log(req.body.queryResult);
 	speech = await cases(intent, parameter);
 
 	if(speech == ""){
 		let newIntent = intents[intents.length-1];
+		console.log("este es nuevo item", newIntent);
 		speech = await cases(newIntent, parameters);
-		const speechResponse = {
-			google: {
-				expectUserResponse: true,
-				systemIntent: {
-					intent: newIntent 
-				},
-				richResponse: {
-					items: [
-					{
-						simpleResponse: {
-						textToSpeech: speech
-						}
+	}
+
+	const speechResponse = {
+		google: {
+			expectUserResponse: true,
+			richResponse: {
+				items: [
+				{
+					simpleResponse: {
+					textToSpeech: speech
 					}
-					]
 				}
+				]
 			}
-		};
-		
-		return res.json({
-			payload: speechResponse,
-			data: speechResponse,
-			fulfillmentText: speech,
-			speech: speech,
-			displayText: speech,
-			source: "webhook-echo-sample"
-		});
+		}
+	};
 	
-	}
-	else{
-		const speechResponse = {
-			google: {
-				expectUserResponse: true,
-				richResponse: {
-					items: [
-					{
-						simpleResponse: {
-						textToSpeech: speech
-						}
-					}
-					]
-				}
-			}
-		};
-		
-		return res.json({
-			payload: speechResponse,
-			data: speechResponse,
-			fulfillmentText: speech,
-			speech: speech,
-			displayText: speech,
-			source: "webhook-echo-sample"
-		});
-	}
+	return res.json({
+		payload: speechResponse,
+		data: speechResponse,
+		fulfillmentText: speech,
+		speech: speech,
+		displayText: speech,
+		source: "webhook-echo-sample"
+	});
 }
