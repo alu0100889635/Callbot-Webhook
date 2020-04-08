@@ -126,6 +126,8 @@ const cases = async (intent, parameters) => {
 			return questions.fallback + questions.pregunta3;
 		case "4pregunta - fallback":
 			return questions.fallback + questions.pregunta4;
+		case "5pregunta - fallback":
+			return questions.fallback + questions.pregunta5;
 		case "5pregunta - no - fallback":
 			return questions.fallback + questions.pregunta5_no;
 		case "5pregunta - yes - fallback":
