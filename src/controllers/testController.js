@@ -118,33 +118,6 @@ const cases = async (intent, parameters) => {
 			subject.address= parameters.address;
 			await sendSubjectToDB();
 			return questions.pregunta10;
-		case "1pregunta - fallback":
-			return questions.fallback + questions.pregunta1;
-		case "2pregunta - fallback":
-			return questions.fallback + questions.pregunta2;
-		case "3pregunta - fallback":
-			return questions.fallback + questions.pregunta3;
-		case "4pregunta - fallback":
-			return questions.fallback + questions.pregunta4;
-		case "5pregunta - fallback":
-			return questions.fallback + questions.pregunta5;
-		case "5pregunta - no - fallback":
-			return questions.fallback + questions.pregunta5_no;
-		case "5pregunta - yes - fallback":
-			return questions.fallback + questions.pregunta5_yes;
-		case "5pregunta - yes - yes - fallback":
-			return questions.fallback + questions.pregunta5_yes_yes;
-		case "5pregunta - yes - no - fallback":
-			return questions.fallback + questions.pregunta5_yes_no;
-		case "5pregunta - yes - no - yes - fallback":
-			return questions.fallback + questions.pregunta6;
-		case "6pregunta - fallback":
-			return questions.fallback + questions.pregunta7;
-		case "7pregunta - fallback":
-			return questions.fallback + questions.pregunta8;
-		case "8pregunta - fallback":
-			return questions.fallback + questions.pregunta9;
-			
 		default:
 			console.log(intent);
 			break;
