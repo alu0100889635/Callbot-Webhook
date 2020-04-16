@@ -4,7 +4,7 @@ const questions = require("./questions.json");
 let answers = require("./answers.json");
 let subject = require("./subject.json");
 let months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
-let intentsArray = [];
+
 
 const sendPhonecallToDB =  async () => {
 	console.log("Answers es = ", answers);
@@ -74,29 +74,35 @@ const cases = async (intent, parameters) => {
 			if(parameters.recentlyTraveled == "Sí"){
 				answers.recentlyTraveled = true;
 			}
+			console.log("Answers es = ", answers);
 			return questions.pregunta2;
 		case "3pregunta":
 			if(parameters.sickContact == "Sí"){
 				answers.sickContact = true;
 			}
+			console.log("Answers es = ", answers);
 			return questions.pregunta3;
 		case "4pregunta":
 			if(parameters.sickCovidContact == "Sí"){
 				answers.sickCovidContact = true;
 			}
+			console.log("Answers es = ", answers);
 			return questions.pregunta4;
 		case "5pregunta":
 			if(parameters.healthOfficial == "Sí"){
 				answers.healthOfficial = true;
 			}
+			console.log("Answers es = ", answers);
 			return questions.pregunta5;
 		case "5pregunta - no":
 			return questions.pregunta5_no;
 		case "5pregunta - yes":
 			answers.commonSymptoms = true;
+			console.log("Answers es = ", answers);
 			return questions.pregunta5_yes;
 		case "5pregunta - yes - yes": //sí tiene dificultad respiratoria
 			answers.difficultyBreathing = true;
+			console.log("Answers es = ", answers);
 			return questions .pregunta6;
 		case "5pregunta - yes - no": //no tiene dificultad respiratoria
 			return questions.pregunta5_yes_no;
