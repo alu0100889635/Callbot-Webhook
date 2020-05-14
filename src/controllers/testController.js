@@ -88,6 +88,7 @@ const cases = async (intent, parameters) => {
 		case "5pregunta - no":
 			let verdad = false;
 			for(let i = 0; i<Object.values(answers).length; i++){
+				console.log(Object.values(answers)[i]);
 				if(Object.values(answers)[i]){
 					verdad = true;
 				}
