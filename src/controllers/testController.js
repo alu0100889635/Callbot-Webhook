@@ -24,15 +24,6 @@ const sendSubjectToDB = async () => {
 	.catch(e => console.log(e));
 }
 
-/* axios.delete(URL + usuario)
-.then(async response => {
-	console.log(response)
-	await axios.get(URL)//tu get de usuarios
-	.then(response => console.log(response))
-	.catch(e => console.log(e))
-})
-.catch(error => console.log(error)) */
-
 const parseBirthDate = (item) => {
 	const date = item.split(" ");
 	let month = "";
@@ -95,7 +86,18 @@ const cases = async (intent, parameters) => {
 			console.log("Answers es = ", answers);
 			return questions.pregunta5;
 		case "5pregunta - no":
-			return questions.pregunta5_no;
+			let verdad = false;
+			for(let i = 0; i<Object.values(answers).length; i++){
+				if(Object.values(answers)[i]){
+					verdad = true;
+				}
+			}
+			if(verdad){
+				return questions.pregunta5_some;
+			}
+			else{
+				return questions.pregunta5_no;
+			}
 		case "5pregunta - yes":
 			answers.commonSymptoms = true;
 			console.log("Answers es = ", answers);
@@ -110,6 +112,7 @@ const cases = async (intent, parameters) => {
 			return questions.pregunta5_yes_no_no;
 		case "5pregunta - yes - no - yes": //Sí pertenece a grupo de riesgo
 			answers.riskyGroup = true;
+			console.log("Answers es = ", answers);
 			return questions.pregunta6;
 		case "6pregunta":
 			subject.fullName = parameters.fullName;
