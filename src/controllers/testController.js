@@ -93,13 +93,16 @@ const cases = async (intent, parameters) => {
 				if(Object.values(answers)[i]){
 					verdad = true;
 				}
+				else{
+					verdad = false;
+				}
 			}
 			if(verdad){
 				console.log("holita");
 				frase = questions.pregunta5_some;
 			}
 			else{
-				console.log("holita");
+				console.log("holi");
 				frase = questions.pregunta5_no;
 			}
 			return frase;
