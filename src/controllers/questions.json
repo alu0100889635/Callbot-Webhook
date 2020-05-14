@@ -9,7 +9,7 @@
     "pregunta5_no": "No ha viajado a ningún área donde existan casos conocidos del coronavirus (COVID-19) o no ha estado en contacto con alguien que pudiera estar enfermo. Además, no presenta síntomas de infección por coronavirus, por lo tanto su riesgo es bajo.",
     "pregunta5_some": "Ha mencionado que ha viajado a un área donde existen casos conocidos de coronavirus (COVID-19) o ha estado en contacto con alguien que podría estar contagiado. Por ahora no ha presentado ningún síntoma de infección de coronavirus. Sin embargo, debería realizar un control sobre su evolución tomándose la temperatura dos veces al día.",
     "pregunta5_yes_no": "¿Se encuentra en alguna de estas situaciones?.Persona con 65 años o superior.Enfermedades cardíacas (por ejemplo: enfermedad de las arterias coronarias, enfermedad valvular o insuficiencia cardíaca).Enfermedades pulmonares(por ejemplo: asma o enfermedad de obstrucción pulmonar crónica).Enfermedades inmunosupresoras (por ejemplo: quimioterapia, transplante o diabetes).",
-    "pregunta5_yes_no_no": "Tan amable",
+    "pregunta5_yes_no_no": "Por ahora los síntomas que presenta son leves, por lo tanto no es necesario ponerse en contacto con el operador de emergencias.",
     "pregunta6": "¿Podría decirme su nombre completo?",
     "pregunta7": "¿Podría decirme los dígitos y letra de su Documento Nacional de Identidad?",
     "pregunta8": "¿Podría decirme su fecha de nacimiento?",
