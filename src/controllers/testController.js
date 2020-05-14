@@ -90,20 +90,18 @@ const cases = async (intent, parameters) => {
 			let verdad = false;
 			for(let i = 0; i<Object.values(answers).length; i++){
 				console.log(Object.values(answers)[i]);
-				if(Object.values(answers)[i]){
+				if(Object.values(answers)[i] == true){
+					console.log("estamos en true");
 					verdad = true;
-				}
-				else{
-					verdad = false;
-				}
-			}
-			if(verdad){
+				};
+			};
+			if(!verdad){
 				console.log("holita");
-				frase = questions.pregunta5_some;
+				frase = questions.pregunta5_no;
 			}
 			else{
 				console.log("holi");
-				frase = questions.pregunta5_no;
+				frase = questions.pregunta5_some;
 			}
 			return frase;
 		case "5pregunta - yes":
