@@ -7,12 +7,28 @@ let months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "a
 
 
 const sendPhonecallToDB =  async () => {
-	console.log("Answers es = ", answers);
 	axios.post(URL + "/phonecalls/addPhonecall", answers)
 	.then(response => console.log(response))
 	.catch(e => console.log(e));
-	answers = require("./answers.json");
-	subject = require("./subject.json");
+
+	answers = {
+		"recentlyTraveled": false,
+		"sickContact": false,
+		"sickCovidContact": false,
+		"healthOfficial": false,
+		"commonSymptoms": false,
+		"difficultyBreathing": false,
+		"riskyGroup": false,
+		"subject_id": "",
+		"observations": []
+	};
+
+	subject = {
+		"fullName": "",
+		"dni": "",
+		"birthDate": "",
+		"address": ""
+	};
 }
 
 const sendSubjectToDB = async () => {
