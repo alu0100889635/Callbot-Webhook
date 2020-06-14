@@ -7,5 +7,11 @@
 	"difficultyBreathing": false,
 	"riskyGroup": false,
 	"subject_id": "",
-	"observations": []
+	"observations": [{
+		"operator_id": "ad4S",
+		"message": "Se estudian los datos del paciente y se preguntan síntomas detallados"
+	},{
+		"operator_id": "ad4S",
+		"message": "Se comunica a la persona cómo se va a proceder"
+	}]
 }
