@@ -11,6 +11,8 @@ const sendPhonecallToDB =  async () => {
 	axios.post(URL + "/phonecalls/addPhonecall", answers)
 	.then(response => console.log(response))
 	.catch(e => console.log(e));
+	answers = require("./answers.json");
+	subject = require("./subject.json");
 }
 
 const sendSubjectToDB = async () => {
