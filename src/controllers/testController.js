@@ -138,19 +138,19 @@ const cases = async (intent, parameters) => {
 			return questions.pregunta5;
 		case "5pregunta - no":
 			let frase;
-			/* let verdad = false;
+			let verdad = false;
 			for(let i = 0; i<Object.values(answers).length; i++){
 				console.log(Object.values(answers)[i]);
 				if(Object.values(answers)[i] === true){
 					verdad = true;
 				};
 			};
-			if(!verdad){ */
+			if(!verdad){
 				frase = questions.pregunta5_no;
-			/*} 
+			} 
 			else{
 				frase = questions.pregunta5_some;
-			} */
+			}
 			return frase;
 		case "5pregunta - yes":
 			answers.commonSymptoms = true;
