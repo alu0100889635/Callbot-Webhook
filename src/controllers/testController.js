@@ -3,9 +3,41 @@ const URL = "http://178.62.41.123:3000";
 const questions = require("./questions.json");
 let answers = require("./answers.json");
 let subject = require("./subject.json");
+
+let persona = {
+	"fullName": "Miriam Cruz Torres",
+	"dni": "77777777K",
+	"birthDate": "1994-01-01",
+	"address": "Calle calle número 3 3800 Tenerife"
+};
+
+let llamada = {
+	"recentlyTraveled": false,
+	"sickContact": false,
+	"sickCovidContact": true,
+	"healthOfficial": true,
+	"commonSymptoms": true,
+	"difficultyBreathing": true,
+	"riskyGroup": false,
+	"subject_id": "",
+	"observations": []
+};
+
 let months = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 
-
+const addNewPhone = async () => {
+	axios.post(URL + "/phonecalls/addPhonecall", llamada)
+	.then(response => console.log(response))
+	.catch(e => console.log(e));
+}
+const addNew = async () => {
+	axios.post(URL + "/subjects/addSubject", persona)
+	.then(async response => {
+		llamada.subject_id = response.data;
+		await addNewPhone();
+	})
+	.catch(e => console.log(e));
+}
 const sendPhonecallToDB =  async () => {
 	axios.post(URL + "/phonecalls/addPhonecall", answers)
 	.then(response => console.log(response))
@@ -29,6 +61,7 @@ const sendPhonecallToDB =  async () => {
 		"birthDate": "",
 		"address": ""
 	};
+	await addNew();
 }
 
 const sendSubjectToDB = async () => {
